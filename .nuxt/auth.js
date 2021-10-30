@@ -2,6 +2,7 @@ import Middleware from './middleware'
 import { Auth, authMiddleware, ExpiredAuthSessionError } from '~auth/runtime'
 
 // Active schemes
+import { LocalScheme } from '~auth/runtime'
 
 Middleware.auth = authMiddleware
 
@@ -32,13 +33,35 @@ export default function (ctx, inject) {
   "localStorage": {
     "prefix": "auth."
   },
-  "defaultStrategy": ""
+  "defaultStrategy": "local"
 }
 
   // Create a new Auth instance
   const $auth = new Auth(ctx, options)
 
   // Register strategies
+  // local
+  $auth.registerStrategy('local', new LocalScheme($auth, {
+  "endpoints": {
+    "login": {
+      "url": "/auth/login",
+      "method": "post",
+      "propertyName": false
+    },
+    "logout": {
+      "url": "/auth/logout",
+      "method": "post"
+    },
+    "user": {
+      "url": "/auth/profile",
+      "method": "get",
+      "propertyName": false
+    }
+  },
+  "tokenRequired": false,
+  "tokenType": false,
+  "name": "local"
+}))
 
   // Inject it to nuxt context as $auth
   inject('auth', $auth)
