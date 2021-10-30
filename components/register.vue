@@ -1,69 +1,80 @@
 <template>
-    <!-- <v-form>
-        <v-text-field   v-model="userInfo.name" 
-                        label= "name"
-                        :rules="[required('name')]"
-                        v-if="hasName"/>
-        <v-text-field   v-model="userInfo.email" 
-                        label= "email"
-                        :rules="[required('email'), emailFormat()]"/>
-        <v-text-field   v-model="userInfo.password" 
-                        label= "Password"
-                        :type="showPassword ? 'text' : 'password'"
-                        :append-icon="showPassword ? 'mdi-eye' : 'mdi-eye-off'"
-                        @click:append="showPassword = !showPassword"
-                        :rules="[required('password'), minLength('password', 8)]"
-                        v-if="hasName"/>
-        <v-btn @click="submitForm(userInfo)" :diabled="!valid">{{ buttonTtttext }}</v-btn>
-    </v-form> -->
     <div class="container">
         <div class="row">
             <div class="column">
-                <div class="card">
-                    <header class="header">
-                        Sign-Up
-                    </header>
-                    <div class="body">
-                        <form @submit.prevent="pressed">
-                            <div class="form-group">
-                                <input type="text" placeholder="Email" v-model="email" class="form-control">
+                <ValidationObserver v-slot="{ invalid }">
+                    <form @submit.prevent="submitForm">
+                        <ValidationProvider     v-slot="{ errors }"
+                                                name="form.userName"
+                                                rules="required">
+                            <div class="form-group" label="Username:" label-for="userName">
+                                <input      v-model="form.userName"
+                                            required
+                                            Placeholder="Your User Name"
+                                            id="userName"/>
+                                <span class="input-invalid-message">
+                                    {{ errors[0] }}
+                                </span>
                             </div>
-                            <div class="form-group">
-                                <input type="text" placeholder="Password" v-model="password" class="form-control">
+
+                        </ValidationProvider>
+                        <ValidationProvider     v-slot="{ errors }"
+                                                name="form.email"
+                                                rules="required|email">
+                            <div class="form-group" label="Email:" label-for="email">
+                                <input      v-model="form.email"
+                                            v-validate="'required|email'"
+                                            rules="email"
+                                            data-vv-as="email"
+                                            required
+                                            email
+                                            Placeholder="Your Email"
+                                            id="email"/>
+                                <span class="input-invalid-message">
+                                    {{ errors[0] }}
+                                </span>
                             </div>
-                            <button class="button">Submit</button>
+
+                        </ValidationProvider>
+                            <button class="button" :disabled="invalid">Submit</button>
                         </form>
-                    </div>
-                </div>
+                </ValidationObserver>
             </div>
         </div>
     </div>
 </template>
 
 <script>
-// import validations from "utils/validations"
-// import * as firebase from 'firebase/app';
-// import '@firebase/auth';
-// export default {
-//     data() {
-//         return {
-//             userInfo: {
-//                 email: '',
-//                 password: '',
-//             },
-//         }
-//     },
-//     methods: {
-//         pressed() {
-//             // console.log(`\t${userInfo.email}\n\t${userInfo.password}`)
-//             firebase.auth().createUserWithEmailAndPassword(this.userInfo.email, this.userInfo.password)
-//                 .then((user) => {
-//                     console.log(`\t${user}`);
-//                     this.$router.push(`/account`)
-//                 }).catch(error => {
-//                     this.errors = error;
-//                 })
-//         }
-//     }
-// }
+    
+    import { ValidationObserver, ValidationProvider } from "vee-validate";
+    export default {
+        components: {
+            ValidationObserver,
+            ValidationProvider
+        },
+        name: "RegisterForm",
+        data() {
+            return { 
+                form: {
+                    userName: "",
+                    email: "",
+                    password: "",
+                }
+            };
+        },
+        methods: {
+            submitForm(event) {
+                console.log(this.$validator)
+                event.preventDefault();
+                const credentials = {
+                    userName: this.form.userName,
+                    email: this.form.email,
+                    password: this.form.password
+                }
+                alert(credentials);
+                console.log(credentials);                
+                this.$router.push("/")
+            }
+        }
+    }
 </script>

@@ -1,19 +1,52 @@
 <template>
     <div class="container">
         <header>
-            <nuxt-link to="/">FoodTrucks Help</nuxt-link>
-            <ul v-if="$auth.loggedIn">
+            <nuxt-link to="/">FoodTrucks</nuxt-link>
+            <ul v-if="loggedIn">
                 <li><nuxt-link to="/">Home</nuxt-link></li>
-                <li><nuxt-link to="logout">Logout</nuxt-link></li>
+                <li><div @click="logout">Logout</div></li>
             </ul>
             <ul v-else>
                 <li><nuxt-link to="/">Home</nuxt-link></li>
                 <li><nuxt-link to="/login">Login</nuxt-link></li>
-                <li><nuxt-link to="register">Register</nuxt-link></li>
+                <li><nuxt-link to="/register">Register</nuxt-link></li>
             </ul>
         </header>
     </div>
 </template>
+
+
+
+
+
+
+<script>
+import { mapState } from 'vuex'
+export default {
+    name: 'NavBar',
+    computed: {
+        ...mapState('auth', ['loggedIn', 'user'])
+    },
+    methods: {
+        async logout() {
+            await this.$auth.logout();
+            this.$router.push('/login')
+        }
+    }
+}
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
 
 <style lang="scss" scoped>
     body {

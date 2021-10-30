@@ -19,7 +19,8 @@ export default {
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
   plugins: [
-    "~/plugins/firebase.js"
+    {src: "~/plugins/vee-validate.js", ssr: true},
+    {src: "~/plugins/firebase.js"}
   ],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
@@ -41,8 +42,55 @@ export default {
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
     '@nuxtjs/auth-next',
+    ['@nuxtjs/firebase',
+    { 
+      config: {
+        apiKey: "AIzaSyB1G94ZCgPNSx8TMOM3q8EWv_GYAmJ_30U",
+        authDomain: "foodtruckslocator.firebaseapp.com",
+        projectId: "foodtruckslocator",
+        storageBucket: "foodtruckslocator.appspot.com",
+        messagingSenderId: "104363794014",
+        appId: "1:104363794014:web:b322073de7caeb7308decf",
+        measurementId: "G-1CW3P41FJB"
+      },
+      services: {
+        auth: true,
+        firestore: true,
+        functions: true,
+        storage: true,
+        database: true,
+        messaging: true,
+        performance: true,
+        analytics: true,
+        remoteConfig: true
+      }
+    }],
   ],
-
+  // auth-next module configuration
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: false
+          },
+          logout: { 
+            url: '/auth/logout', 
+            method: 'post' 
+          },
+          user: { 
+            url: '/auth/profile', 
+            method: 'get', 
+            propertyName: false 
+          }
+        },
+        tokenRequired: false,
+        tokenType: false
+      }
+    }
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {},
 
@@ -58,6 +106,8 @@ export default {
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
   build: {
+    // transpile: ["vee-validate/dist/rules"],
+    transpile: ["vee-validate"],
   },
   server: {
     host: '0'
