@@ -20,6 +20,7 @@
     "fiber": "^1.0.4",
     "firebase": "^9.2.0",
     "nuxt": "^2.15.7",
+    "nvm": "0.0.4",
     "validation-utils": "^7.0.0",
     "validations": "^0.1.3"
   },

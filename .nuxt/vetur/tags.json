@@ -1,0 +1,11 @@
+{
+  "Body": {
+    "description": "Auto imported from components/body.vue"
+  },
+  "Nav": {
+    "description": "Auto imported from components/nav.vue"
+  },
+  "Register": {
+    "description": "Auto imported from components/register.vue"
+  }
+}
