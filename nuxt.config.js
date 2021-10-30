@@ -38,8 +38,35 @@ export default {
     '@nuxtjs/auth-next',
   ],
 
+  auth: {
+    strategies: {
+      local: {
+        endpoints: {
+          login: {
+            url: '/auth/login',
+            method: 'post',
+            propertyName: false,
+          },
+          logout: {
+            url: '/auth/logout',
+            method: 'post',
+          },
+          user: {
+            url: '/auth/profile',
+            method: 'get',
+            propertyName: false,
+          },
+        },
+        tokenRequired: false,
+        tokenType: false,
+      },
+    },
+  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
-  axios: {},
+  axios: {
+    baseURL: 'http://localhost:8080/v1',
+    credentials: true,
+  },
 
   // PWA module configuration: https://go.nuxtjs.dev/pwa
   pwa: {

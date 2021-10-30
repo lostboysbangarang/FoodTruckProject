@@ -1,10 +1,10 @@
 [
   {
-    "name": "login",
-    "path": "/login",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\login.vue",
-    "chunkName": "pages/login",
-    "_name": "_e1a5581e"
+    "name": "register",
+    "path": "/register",
+    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\register.vue",
+    "chunkName": "pages/register",
+    "_name": "_6a2c734b"
   },
   {
     "name": "index",
