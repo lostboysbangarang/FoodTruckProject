@@ -13,3 +13,7 @@ const auth = require('./routes/auth')
 app.use(auth)
 
 module.exports = app
+
+//uncomment this to create/update all database tables. recomment it afterwards to avoid console spam
+//const { Sequelize } = require('sequelize')
+//sequelize.sync({ alter: true });
