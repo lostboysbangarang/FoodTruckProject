@@ -1,4 +1,10 @@
 export default {
+  /*
+   ** Nuxt target
+   ** See https://nuxtjs.org/api/configuration-target
+   */
+  target: 'server',
+
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
     title: 'foodTrucks',
@@ -15,7 +21,7 @@ export default {
   css: [],
 
   // Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-  plugins: ['~/plugins/firebase.js'],
+  plugins: ['~/plugins/vee-validate.js'],
 
   // Auto import components: https://go.nuxtjs.dev/config-components
   components: true,
@@ -35,36 +41,11 @@ export default {
     '@nuxtjs/pwa',
     // https://go.nuxtjs.dev/content
     '@nuxt/content',
-    '@nuxtjs/auth-next',
   ],
 
-  auth: {
-    strategies: {
-      local: {
-        endpoints: {
-          login: {
-            url: '/auth/login',
-            method: 'post',
-            propertyName: false,
-          },
-          logout: {
-            url: '/auth/logout',
-            method: 'post',
-          },
-          user: {
-            url: '/auth/profile',
-            method: 'get',
-            propertyName: false,
-          },
-        },
-        tokenRequired: false,
-        tokenType: false,
-      },
-    },
-  },
   // Axios module configuration: https://go.nuxtjs.dev/config-axios
   axios: {
-    baseURL: 'http://localhost:8080/v1',
+    baseURL: '/',
     credentials: true,
   },
 
@@ -79,8 +60,17 @@ export default {
   content: {},
 
   // Build Configuration: https://go.nuxtjs.dev/config-build
-  build: {},
+  build: {
+    transpile: ['vee-validate/dist/rules'],
+  },
   server: {
     host: '0.0.0.0',
+  },
+
+  /*
+   ** Server Middleware
+   */
+  serverMiddleware: {
+    '/api': '~/api/index.js',
   },
 }
