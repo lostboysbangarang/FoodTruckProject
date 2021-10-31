@@ -1,9 +1,8 @@
 const { Router } = require('express')
+const { Sequelize } = require('sequelize')
 const UserModel = require('../models/user')
 
 const router = Router()
-
-const sequelize = require('../sequelize')
 
 /* POST users listing. */
 router.post('/register', function (req, res, next) {
@@ -11,14 +10,25 @@ router.post('/register', function (req, res, next) {
 
   //todo: Validate data
 
-  //user.username = req.body.username;
-  user.username = 'test'
-  user.email = 'fuck@you'
-  user.password = 'foobar'
+  console.log(req)
 
-  user.save()
+  user.username = req.body.userName
+  user.email = req.body.email
+  user.password = req.body.password1
 
-  res.json({ good: true })
+  user
+    .save()
+    .then((item) => {
+      res.json({ good: true })
+    })
+    .catch((error) => {
+      res.status(400)
+      if (error instanceof Sequelize.UniqueConstraintError) {
+        res.json({ error: 'Duplicate username or email.' })
+      } else {
+        res.json({ error: 'Unknown error. Fail.', data: error })
+      }
+    })
 })
 
 // Mock Users
