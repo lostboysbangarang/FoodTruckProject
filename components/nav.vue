@@ -59,7 +59,7 @@ body {
     display: flex;
     & ul {
       width: 15%;
-      min-width: 230px;
+      min-width: 220px;
       display: flex;
       // background-color: red;
       justify-content: space-between;

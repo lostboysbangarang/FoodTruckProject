@@ -40,6 +40,7 @@
                       id="email"
                       v-model="form.email"
                       required
+                      type="email"
                       Placeholder="Your Email"
                       rules="A valid email is required"
                     />
@@ -154,10 +155,11 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.error_message {
-  text-align: center;
-  color: red;
-  font-weight: bold;
-  margin: 10px;
-}
+  .error_message {
+    text-align: center;
+    color: red;
+    font-weight: bold;
+    margin: 10px;
+  }
+
 </style>

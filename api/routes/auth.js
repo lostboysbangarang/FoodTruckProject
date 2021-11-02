@@ -37,6 +37,7 @@ router.post('/register', function (req, res, next) {
       .save()
       .then((item) => {
         res.json({ good: true })
+        console.log(user)
       })
       .catch((error) => {
         res.status(400)
@@ -44,6 +45,7 @@ router.post('/register', function (req, res, next) {
           res.json({ error: 'Duplicate username or email.' })
         } else {
           res.json({ error: 'Unknown error. Fail.', data: error })
+          console.log(user + ': ' + error);
         }
       })
   }
