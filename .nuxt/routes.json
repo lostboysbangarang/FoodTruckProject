@@ -3,14 +3,12 @@
     "name": "register",
     "path": "/register",
     "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\register.vue",
-    "chunkName": "pages/register",
-    "_name": "_6a2c734b"
+    "chunkName": "pages/register"
   },
   {
     "name": "index",
     "path": "/",
     "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_74f49e4c"
+    "chunkName": "pages/index"
   }
 ]

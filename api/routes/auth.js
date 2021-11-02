@@ -8,27 +8,45 @@ const router = Router()
 router.post('/register', function (req, res, next) {
   const user = UserModel.build()
 
-  //todo: Validate data
+  if (req.body.userName.length < 3 || req.body.userName > 35) {
+    res.status(400)
+    res.json({ error: 'Username must be between 3 and 35 characters long.' })
+  } else if (!req.body.userName.match(/^[0-9a-zA-Z]+$/)) {
+    res.status(400)
+    res.json({ error: 'Username must be alphanumeric.' })
+  } else if (
+    !req.body.email.match(
+      /^[-!#$%&'*+\/0-9=?A-Z^_a-z{|}~](\.?[-!#$%&'*+\/0-9=?A-Z^_a-z`{|}~])*@[a-zA-Z0-9](-*\.?[a-zA-Z0-9])*\.[a-zA-Z](-?[a-zA-Z0-9])+$/
+    )
+  ) {
+    res.status(400)
+    res.json({ error: 'Email must be valid.' })
+  } else if (req.body.password1.length < 3 || req.body.password1 > 35) {
+    res.status(400)
+    res.json({ error: 'Password must be between 3 and 35 characters long.' })
+  } else if (req.body.password1 != req.body.password2) {
+    res.status(400)
+    res.json({ error: 'Password must be the same' })
+  } else {
+    //everything looks good, try to create the user in the db
+    user.username = req.body.userName
+    user.email = req.body.email
+    user.password = req.body.password1
 
-  console.log(req)
-
-  user.username = req.body.userName
-  user.email = req.body.email
-  user.password = req.body.password1
-
-  user
-    .save()
-    .then((item) => {
-      res.json({ good: true })
-    })
-    .catch((error) => {
-      res.status(400)
-      if (error instanceof Sequelize.UniqueConstraintError) {
-        res.json({ error: 'Duplicate username or email.' })
-      } else {
-        res.json({ error: 'Unknown error. Fail.', data: error })
-      }
-    })
+    user
+      .save()
+      .then((item) => {
+        res.json({ good: true })
+      })
+      .catch((error) => {
+        res.status(400)
+        if (error instanceof Sequelize.UniqueConstraintError) {
+          res.json({ error: 'Duplicate username or email.' })
+        } else {
+          res.json({ error: 'Unknown error. Fail.', data: error })
+        }
+      })
+  }
 })
 
 // Mock Users

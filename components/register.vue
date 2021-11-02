@@ -2,17 +2,16 @@
   <div class="container">
     <div class="row">
       <div class="column">
+        <div class="error_message">{{ error_message }}</div>
         <div class="card">
           <header class="header">Sign-Up</header>
           <div class="body">
             <ValidationObserver v-slot="{ invalid }">
               <form :disabled="loading" @submit.prevent="submitForm">
-                <!-- todo: validate username length and characters -->
-
                 <ValidationProvider
                   v-slot="{ errors }"
                   name="form.userName"
-                  rules="required"
+                  rules="required|min:3|max:35|alphaNum"
                 >
                   <div
                     class="form-group"
@@ -31,12 +30,10 @@
                   </div>
                 </ValidationProvider>
 
-                <!-- todo: validate email format -->
-
                 <ValidationProvider
                   v-slot="{ errors }"
                   name="form.email"
-                  rules="required"
+                  rules="required|email"
                 >
                   <div class="form-group" label="Email:" label-for="email">
                     <input
@@ -52,12 +49,10 @@
                   </div>
                 </ValidationProvider>
 
-                <!-- todo: validate passwords are the same -->
-
                 <ValidationProvider
                   v-slot="{ errors }"
                   name="form.password1"
-                  rules="required"
+                  rules="required|min:6|max:35"
                 >
                   <div
                     class="form-group"
@@ -81,7 +76,7 @@
                 <ValidationProvider
                   v-slot="{ errors }"
                   name="form.password2"
-                  rules="required"
+                  rules="required|min:6|max:35"
                 >
                   <div
                     class="form-group"
@@ -125,6 +120,7 @@ export default {
 
   data() {
     return {
+      error_message: '',
       form: {
         userName: 'Sticks1988',
         email: 'MikePB6691@AOL.com',
@@ -147,7 +143,7 @@ export default {
         })
         .catch((error) => {
           this.errored = true
-          alert(error)
+          this.error_message = error.response.data.error
         })
         .finally(() => {
           this.loading = false
@@ -156,3 +152,12 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.error_message {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  margin: 10px;
+}
+</style>
