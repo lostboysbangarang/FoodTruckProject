@@ -2,78 +2,108 @@
   <div class="container">
     <div class="row">
       <div class="column">
-        <!-- <div class="card">
+        <div class="error_message">{{ error_message }}</div>
+        <div class="card">
           <header class="header">Sign-Up</header>
           <div class="body">
-            <form @submit.prevent="pressed">
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="form.email"
-                  name="email"
-                  placeholder="Email"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <div class="form-group">
-                <input
-                  type="text"
-                  v-model="form.password"
-                  placeholder="Password"
-                  name="password"
-                  class="form-control"
-                  required
-                />
-              </div>
-              <button type="submit" class="button">Submit</button>
-            </form>
+            <ValidationObserver v-slot="{ invalid }">
+              <form :disabled="loading" @submit.prevent="submitForm">
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="form.userName"
+                  rules="required|min:3|max:35|alphaNum"
+                >
+                  <div
+                    class="form-group"
+                    label="Username:"
+                    label-for="userName"
+                  >
+                    <input
+                      id="userName"
+                      v-model="form.userName"
+                      required
+                      Placeholder="Your User Name"
+                    />
+                    <span class="input-invalid-message">
+                      {{ errors[0] }}
+                    </span>
+                  </div>
+                </ValidationProvider>
+
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="form.email"
+                  rules="required|email"
+                >
+                  <div class="form-group" label="Email:" label-for="email">
+                    <input
+                      id="email"
+                      v-model="form.email"
+                      required
+                      Placeholder="Your Email"
+                      rules="A valid email is required"
+                    />
+                    <span class="input-invalid-message">
+                      {{ errors[0] }}
+                    </span>
+                  </div>
+                </ValidationProvider>
+
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="form.password1"
+                  rules="required|min:6|max:35"
+                >
+                  <div
+                    class="form-group"
+                    label="Password:"
+                    label-for="password1"
+                  >
+                    <input
+                      id="password1"
+                      v-model="form.password1"
+                      type="password"
+                      required
+                      Placeholder="Password"
+                      rules="A valid password is required"
+                    />
+                    <span class="input-invalid-message">
+                      {{ errors[0] }}
+                    </span>
+                  </div>
+                </ValidationProvider>
+
+                <ValidationProvider
+                  v-slot="{ errors }"
+                  name="form.password2"
+                  rules="required|min:6|max:35"
+                >
+                  <div
+                    class="form-group"
+                    label="Confirm Password:"
+                    label-for="password2"
+                  >
+                    <input
+                      id="password2"
+                      v-model="form.password2"
+                      type="password"
+                      required
+                      Placeholder="Confirm Password"
+                      rules="A valid password is required"
+                    />
+                    <span class="input-invalid-message">
+                      {{ errors[0] }}
+                    </span>
+                  </div>
+                </ValidationProvider>
+
+                <button class="button" :disabled="invalid || loading">
+                  Submit
+                </button>
+              </form>
+            </ValidationObserver>
           </div>
-            </div>
-         </div>
-            </div> -->
-        <ValidationObserver v-slot="{ invalid }">
-          <form @submit.prevent="submitForm">
-            <ValidationProvider
-              v-slot="{ errors }"
-              name="form.userName"
-              rules="required"
-            >
-              <div class="form-group" label="Username:" label-for="userName">
-                <input
-                  id="userName"
-                  v-model="form.userName"
-                  required
-                  Placeholder="Your User Name"
-                  value="Sticks1988"
-                />
-                <span class="input-invalid-message">
-                  {{ errors[0] }}
-                </span>
-              </div>
-            </ValidationProvider>
-            <ValidationProvider
-              v-slot="{ errors }"
-              name="form.email"
-              rules="required"
-            >
-              <div class="form-group" label="Email:" label-for="email">
-                <input
-                  id="email"
-                  v-model="form.email"
-                  required
-                  Placeholder="Your Email"
-                  rules="A valid email is required"
-                  value="MikePB6691@AOL.com"
-                />
-                <span class="input-invalid-message">
-                  {{ errors[0] }}
-                </span>
-              </div>
-            </ValidationProvider>
-            <button class="button" :disabled="invalid">Submit</button>
-          </form>
-        </ValidationObserver>
+        </div>
       </div>
     </div>
   </div>
@@ -90,11 +120,13 @@ export default {
 
   data() {
     return {
+      error_message: '',
       form: {
-        userName: '',
-        email: '',
-        password: '',
+        userName: 'Sticks1988',
+        email: 'MikePB6691@AOL.com',
+        password: 'emptypass',
       },
+      loading: false,
     }
   },
 
@@ -102,18 +134,16 @@ export default {
     async submitForm(event) {
       this.loading = true
       await this.$axios
-        .post('/api/register', {
-          userName: this.userName,
-          email: this.email,
-          password: this.password,
-        })
+        // todo: display errors in page rather than as alerts. alerts suck.
+
+        .post('/api/register', this.form)
         .then((response) => {
           this.success = true
           this.errored = false
         })
         .catch((error) => {
           this.errored = true
-          alert(error)
+          this.error_message = error.response.data.error
         })
         .finally(() => {
           this.loading = false
@@ -122,3 +152,12 @@ export default {
   },
 }
 </script>
+
+<style lang="scss" scoped>
+.error_message {
+  text-align: center;
+  color: red;
+  font-weight: bold;
+  margin: 10px;
+}
+</style>
