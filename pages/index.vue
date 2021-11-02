@@ -6,7 +6,22 @@
 </template>
 
 <script>
-export default {}
+export default {
+  mounted() {
+      this.setAnimation()
+    },
+
+    methods: {
+      setAnimation() {
+        this.$anime({
+          targets: '.title',
+          translateX: 250,
+          rotate: '1turn',
+          backgroundColor: '#FFF',
+          duration: 800
+        })
+      }
+    }}
 </script>
 
 <style lang="scss">

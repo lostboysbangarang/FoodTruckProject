@@ -30,6 +30,7 @@ export default {
   buildModules: [
     // https://go.nuxtjs.dev/eslint
     '@nuxtjs/eslint-module',
+    'nuxt-animejs',
   ],
 
   // Modules: https://go.nuxtjs.dev/config-modules
@@ -63,3 +64,4 @@ export default {
     host: '0.0.0.0', 
   }
 }
+
