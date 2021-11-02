@@ -13,14 +13,14 @@ import { createStore } from './store.js'
 
 /* Plugins */
 
-import nuxt_plugin_plugin_34832bfa from 'nuxt_plugin_plugin_34832bfa' // Source: ./components/plugin.js (mode: 'all')
-import nuxt_plugin_pluginclient_978b2b14 from 'nuxt_plugin_pluginclient_978b2b14' // Source: ./content/plugin.client.js (mode: 'client')
-import nuxt_plugin_pluginserver_19f3dbfe from 'nuxt_plugin_pluginserver_19f3dbfe' // Source: ./content/plugin.server.js (mode: 'server')
-import nuxt_plugin_workbox_14a52f2c from 'nuxt_plugin_workbox_14a52f2c' // Source: ./workbox.js (mode: 'client')
-import nuxt_plugin_metaplugin_6d228a3f from 'nuxt_plugin_metaplugin_6d228a3f' // Source: ./pwa/meta.plugin.js (mode: 'all')
-import nuxt_plugin_iconplugin_71ca2fb3 from 'nuxt_plugin_iconplugin_71ca2fb3' // Source: ./pwa/icon.plugin.js (mode: 'all')
-import nuxt_plugin_axios_cc4803e0 from 'nuxt_plugin_axios_cc4803e0' // Source: ./axios.js (mode: 'all')
-import nuxt_plugin_veevalidate_1a0c1998 from 'nuxt_plugin_veevalidate_1a0c1998' // Source: ../plugins/vee-validate.js (mode: 'all')
+import nuxt_plugin_plugin_048f0b85 from 'nuxt_plugin_plugin_048f0b85' // Source: .\\components\\plugin.js (mode: 'all')
+import nuxt_plugin_pluginclient_4ec521bb from 'nuxt_plugin_pluginclient_4ec521bb' // Source: .\\content\\plugin.client.js (mode: 'client')
+import nuxt_plugin_pluginserver_9702d97a from 'nuxt_plugin_pluginserver_9702d97a' // Source: .\\content\\plugin.server.js (mode: 'server')
+import nuxt_plugin_workbox_31d52a44 from 'nuxt_plugin_workbox_31d52a44' // Source: .\\workbox.js (mode: 'client')
+import nuxt_plugin_metaplugin_93b8ca78 from 'nuxt_plugin_metaplugin_93b8ca78' // Source: .\\pwa\\meta.plugin.js (mode: 'all')
+import nuxt_plugin_iconplugin_8a697f90 from 'nuxt_plugin_iconplugin_8a697f90' // Source: .\\pwa\\icon.plugin.js (mode: 'all')
+import nuxt_plugin_axios_5f0041b0 from 'nuxt_plugin_axios_5f0041b0' // Source: .\\axios.js (mode: 'all')
+import nuxt_plugin_veevalidate_1a0c1998 from 'nuxt_plugin_veevalidate_1a0c1998' // Source: ..\\plugins\\vee-validate.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -88,7 +88,7 @@ async function createApp(ssrContext, config = {}) {
   // here we inject the router and store to all child components,
   // making them available everywhere as `this.$router` and `this.$store`.
   const app = {
-    head: {"title":"foodTrucks","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"}],"style":[],"script":[]},
+    head: {"title":"foodTrucks","meta":[{"charset":"utf-8"},{"name":"viewport","content":"width=device-width, initial-scale=1"},{"hid":"description","name":"description","content":""},{"name":"format-detection","content":"telephone=no"},{"hid":"charset","charset":"utf-8"},{"hid":"mobile-web-app-capable","name":"mobile-web-app-capable","content":"yes"},{"hid":"apple-mobile-web-app-title","name":"apple-mobile-web-app-title","content":"foodTrucks"},{"hid":"og:type","name":"og:type","property":"og:type","content":"website"},{"hid":"og:title","name":"og:title","property":"og:title","content":"foodTrucks"},{"hid":"og:site_name","name":"og:site_name","property":"og:site_name","content":"foodTrucks"},{"hid":"og:description","name":"og:description","property":"og:description","content":"```bash\r # install dependencies\r $ npm install"}],"link":[{"rel":"icon","type":"image\u002Fx-icon","href":"\u002Ffavicon.ico"},{"hid":"shortcut-icon","rel":"shortcut icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_64x64.e3e9fb.png"},{"hid":"apple-touch-icon","rel":"apple-touch-icon","href":"\u002F_nuxt\u002Ficons\u002Ficon_512x512.e3e9fb.png","sizes":"512x512"},{"rel":"manifest","href":"\u002F_nuxt\u002Fmanifest.e8602338.json","hid":"manifest"}],"style":[],"script":[],"htmlAttrs":{"lang":"en"}},
 
     store,
     router,
@@ -217,32 +217,32 @@ async function createApp(ssrContext, config = {}) {
   }
   // Plugin execution
 
-  if (typeof nuxt_plugin_plugin_34832bfa === 'function') {
-    await nuxt_plugin_plugin_34832bfa(app.context, inject)
+  if (typeof nuxt_plugin_plugin_048f0b85 === 'function') {
+    await nuxt_plugin_plugin_048f0b85(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_pluginclient_978b2b14 === 'function') {
-    await nuxt_plugin_pluginclient_978b2b14(app.context, inject)
+  if (process.client && typeof nuxt_plugin_pluginclient_4ec521bb === 'function') {
+    await nuxt_plugin_pluginclient_4ec521bb(app.context, inject)
   }
 
-  if (process.server && typeof nuxt_plugin_pluginserver_19f3dbfe === 'function') {
-    await nuxt_plugin_pluginserver_19f3dbfe(app.context, inject)
+  if (process.server && typeof nuxt_plugin_pluginserver_9702d97a === 'function') {
+    await nuxt_plugin_pluginserver_9702d97a(app.context, inject)
   }
 
-  if (process.client && typeof nuxt_plugin_workbox_14a52f2c === 'function') {
-    await nuxt_plugin_workbox_14a52f2c(app.context, inject)
+  if (process.client && typeof nuxt_plugin_workbox_31d52a44 === 'function') {
+    await nuxt_plugin_workbox_31d52a44(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_metaplugin_6d228a3f === 'function') {
-    await nuxt_plugin_metaplugin_6d228a3f(app.context, inject)
+  if (typeof nuxt_plugin_metaplugin_93b8ca78 === 'function') {
+    await nuxt_plugin_metaplugin_93b8ca78(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_iconplugin_71ca2fb3 === 'function') {
-    await nuxt_plugin_iconplugin_71ca2fb3(app.context, inject)
+  if (typeof nuxt_plugin_iconplugin_8a697f90 === 'function') {
+    await nuxt_plugin_iconplugin_8a697f90(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_axios_cc4803e0 === 'function') {
-    await nuxt_plugin_axios_cc4803e0(app.context, inject)
+  if (typeof nuxt_plugin_axios_5f0041b0 === 'function') {
+    await nuxt_plugin_axios_5f0041b0(app.context, inject)
   }
 
   if (typeof nuxt_plugin_veevalidate_1a0c1998 === 'function') {
