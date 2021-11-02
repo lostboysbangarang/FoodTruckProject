@@ -1,7 +1,7 @@
 {
   "name": "foodTrucks",
   "short_name": "foodTrucks",
-  "description": "```bash\r # install dependencies\r $ npm install",
+  "description": "## Build Setup",
   "icons": [
     {
       "src": "/_nuxt/icons/icon_64x64.e3e9fb.png",

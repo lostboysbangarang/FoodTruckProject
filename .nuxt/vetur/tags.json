@@ -2,6 +2,9 @@
   "Body": {
     "description": "Auto imported from components/body.vue"
   },
+  "Login": {
+    "description": "Auto imported from components/login.vue"
+  },
   "Nav": {
     "description": "Auto imported from components/nav.vue"
   },
