@@ -10,8 +10,5 @@
   },
   "Register": {
     "description": "Auto imported from components/register.vue"
-  },
-  "RegisterBACKUP": {
-    "description": "Auto imported from components/registerBACKUP.vue"
   }
 }

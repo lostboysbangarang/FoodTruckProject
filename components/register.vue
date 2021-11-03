@@ -110,28 +110,50 @@
                     password: '',
                 },
                 loading: false,
+                success: null,
+                errored: null,
             }
         },
 
         methods: {
             async submitForm(event) {
                 this.loading = true
-                await this.$axios
-                    // todo: display errors in page rather than as alerts. alerts suck.
-                    .post('/api/register', this.form)
-                        .then((response) => {
-                            this.success = true
-                            this.errored = false
+                    try { 
+                        await this.$axios
+                        // todo: display errors in page rather than as alerts. alerts suck.
+                        .post('/api/register', this.form)
+                            .then((response) => {
+                                this.success = true
+                                this.errored = false
+                                this.userName = response.data.username
+                                console.log(response.data)
+                            })
+                            .catch((error) => {
+                                this.errored = true
+                                this.error_message = error.response.data.error
+                            })
+                            .finally(() => {
+                                this.loading = false
+                            })
+                        const successfull = await this.$auth.loginWith('local', {
+                            data: {
+                                email: this.form.email,
+                                password: this.form.password,
+                            }
                         })
-                        .catch((error) => {
-                            this.errored = true
-                            this.error_message = error.response.data.error
-                        })
-                        .finally(() => {
-                            this.loading = false
-                            this.$router.push('/login')
-                        })
+                        if (this.success && successfull) {
+                            console.log(this.userName)
+                            await this.$auth.setUser(this.form.userName)
+                            this.$auth.$state.loggedIn = this.success;
+                        }
+                        
+                        // this.$router.push('/')
+                    }
+                    catch (e) {
+                        this.error = e
+                    }
             },
+            
         },
     }
 </script>
