@@ -1,12 +1,20 @@
 <template>
 	<div>
+		<button @click="successi">clickme</button>
 		<Nav />
 		<Body />
 	</div>
 </template>
 
 <script>
-export default {}
+export default {
+	name: 'IndexPage',
+	methods: {
+		successi() {
+			console.log(this.$auth);
+		}
+	}
+}
 </script>
 
 <style lang="scss">

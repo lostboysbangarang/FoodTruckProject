@@ -57,25 +57,26 @@ router.post('/register', async (req, res) => {
 			user.save()
 				.then((item) => {
 					console.log(`Item:\t${item}`)
-					res.json({ good: true })
+					// res.json({ good: true })
 				})
 				.catch((error) => {
 					res.status(400)
 					if (
 						error instanceof
 						Sequelize.UniqueConstraintError
-					) {
-						res.json({
-							error: 'Duplicate username or email.',
-						})
-					} else {
-						res.json({
-							error: 'Unknown error. Fail.',
-							data: error,
-						})
-						console.log(user + ': ' + error)
-					}
-				})
+						) {
+							res.json({
+								error: 'Duplicate username or email.',
+							})
+						} else {
+							res.json({
+								error: 'Unknown error. Fail.',
+								data: error,
+							})
+							console.log(user + ': ' + error)
+						}
+					})
+			res.send({username: userProfile.username})
 		}
 	} catch (err) {
 		res.status(500).send()
@@ -94,12 +95,12 @@ router.post('/login', async (req, res) => {
 							user.password
 						)
 					) {
-						res.send('Success!')
+						res.send({boo: true, username: user.username})
 					} else {
-						res.send('Invalid!')
+						res.send(false)
 					}
 				} catch (err) {
-					res.send('Failure!')
+					res.send(false)
 					console.log(err)
 				}
 			})
@@ -111,26 +112,13 @@ router.post('/login', async (req, res) => {
 		})
 })
 
-router.post('/login', async (req, res) => {
-	const userEmail = req.body.email
-	const userPassword = req.body.password
-	if (!userEmail || !userPassword) {
-		return res.status(400).json({
-			type: 'error',
-			message: 'email and password fields are essential for authentication.',
+router.get('/me', async (req, res) => {
+	// console.log(req.body.email);
+	return UserModel.findOne({ email: req.body.email})
+		.then((user) => {
+			res.send(user.username);
 		})
-	}
-	const user = Users.User.findAll({ where: { email: userEmail } })
-	try {
-		if (await bcrypt.compare(user.password, userPassword)) {
-			res.send('Success!')
-		} else {
-			res.send('Invalid credentials!')
-		}
-	} catch (err) {
-		res.send('Failure!')
-		console.log(err)
-	}
+	// return userName;
 })
 
 const users = [{ name: 'Alexandre' }, { name: 'Pooya' }, { name: 'Sébastien' }]

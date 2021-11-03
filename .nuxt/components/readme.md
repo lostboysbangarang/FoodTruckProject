@@ -10,4 +10,3 @@ You can directly use them in pages and other components without the need to impo
 - `<Login>` | `<login>` (components/login.vue)
 - `<Nav>` | `<nav>` (components/nav.vue)
 - `<Register>` | `<register>` (components/register.vue)
-- `<RegisterBACKUP>` | `<register-b-a-c-k-u-p>` (components/registerBACKUP.vue)

@@ -2,9 +2,10 @@
 	<div class="container">
 		<header>
 			<nuxt-link to="/">FoodTrucks Help</nuxt-link>
-			<ul v-if="$loggedIn">
+			<ul v-if="this.$auth.$state.loggedIn">
 				<li><nuxt-link to="/">Home</nuxt-link></li>
 				<li><div @click="logout">Logout</div></li>
+				<!-- <li><div>{{loggedInUser.username}}</div></li> -->
 			</ul>
 			<ul v-else>
 				<li><nuxt-link to="/">Home</nuxt-link></li>
@@ -24,7 +25,13 @@
 <script>
 import { mapState } from 'vuex'
 export default {
-	name: 'card',
+	name: 'NavCard',
+	data() {
+		return { 
+			successi: this.$auth.$state.loggedIn,
+			// subject: this.$auth.$state.user.
+		}
+	},
 	computed: {
 		...mapState('auth', ['loggedIn', 'user']),
 	},
