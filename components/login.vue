@@ -144,7 +144,8 @@ export default {
 				)
 				if (this.success && seccsi) {
 					await this.$auth.setUser(this.username)
-					this.$auth.$state.loggedIn = this.success;
+					this.$auth.$state.loggedIn =
+						this.success
 				}
 			} catch (e) {
 				console.log(`\nERROR ERROR WE GON DIE\n`, e)
