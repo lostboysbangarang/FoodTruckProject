@@ -2,22 +2,22 @@
   {
     "name": "login",
     "path": "/login",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\login.vue",
+    "component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/login.vue",
     "chunkName": "pages/login",
-    "_name": "_e1a5581e"
+    "_name": "_6569f6e5"
   },
   {
     "name": "register",
     "path": "/register",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\register.vue",
+    "component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/register.vue",
     "chunkName": "pages/register",
-    "_name": "_6a2c734b"
+    "_name": "_64837bd7"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\index.vue",
+    "component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/index.vue",
     "chunkName": "pages/index",
-    "_name": "_74f49e4c"
+    "_name": "_c87b5864"
   }
 ]

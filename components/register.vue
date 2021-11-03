@@ -123,9 +123,9 @@ export default {
     return {
       error_message: '',
       form: {
-        userName: 'Sticks1988',
-        email: 'MikePB6691@AOL.com',
-        password: 'emptypass',
+        userName: '',
+        email: '',
+        password: '',
       },
       loading: false,
     }
