@@ -2,6 +2,7 @@ export { default as Body } from '../../components/body.vue'
 export { default as Login } from '../../components/login.vue'
 export { default as Nav } from '../../components/nav.vue'
 export { default as Register } from '../../components/register.vue'
+export { default as RegisterBACKUP } from '../../components/registerBACKUP.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {
