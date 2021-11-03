@@ -9,41 +9,36 @@
                 <h2>Login to FoodTrucks</h2>
                 <div class="inputs">
                     <div class="input">
-                        <ValidationProvider     v-slot="{errors}"
+                        <ValidationProvider     
+                                                v-slot="{errors}"
                                                 name="email"
                                                 rules="required|email">
-                            <input  id="email"
+                            <input  
+                                    id="email"
+                                    v-model="form.email"
                                     type="email"
-                                    v-model="email"
                                     placeholder="Your Login Email">
-                            <!-- <img class="icon" src="~assets/svgs/email.svg"/> -->
                             <span class="input-invalid-message">{{errors[0]}}</span>
-                            <!-- <div    class="form-group"
-                                    label="Email"
-                                    label-for="email">
-                            </div>                     -->
                         </ValidationProvider>
                     </div>
                     <div class="input">
-                        <ValidationProvider     v-slot="{errors}"
+                        <ValidationProvider     
+                                                v-slot="{errors}"
                                                 name="password"
                                                 rules="required|min:6|max:35">
-                            <input  id="password"
+                            <input  
+                                    id="password"
+                                    v-model="form.password"
                                     type="password"
-                                    v-model="password"
                                     placeholder="Your Login Password"/>
                             <span class="input-invalid-message">{{errors[0]}}</span>
-                            <!-- <img class="icon" src="~assets/svgs/password.svg"/> -->
-                            <!-- <div    class="form-group"
-                                    label="Password"
-                                    label-for="password">
-                            </div>                     -->
                         </ValidationProvider>
                     </div>
                 </div>
                 <button class="button" :disabled="invalid || loading">
                     Login
                 </button>
+                <span class="error">Errors: {{error}}</span>
                 <div class="angle"></div>
             </form>
         </ValidationObserver>
@@ -53,16 +48,38 @@
 
 <script>
     import { ValidationObserver, ValidationProvider } from 'vee-validate'
-    // import email from "../assets/svgs/email.svg";
-    // import password from "../assets/svgs/password.svg";
     export default {
         name: 'LoginForm',
         components: {
             ValidationObserver,
             ValidationProvider,
-            // email,
-            // password
         },
+        data() {
+            return {
+                error_message: '',
+                form: {
+                    email: '',
+                    password: '',
+                },
+                loading: false,
+            }
+        },
+        methods: {
+            async submissive(event) {
+                this.loading = true;
+                await this.$axios
+                .post('api/login', this.form).then(response => {
+                    this.success = true;
+                    this.errored = false;
+                    console.log(response)
+                })
+                .catch(error => {
+                    this.errored = true;
+                    this.error_message = error.response.data.error;
+                })
+                .finally(() => this.loading === false)
+            }
+        }
     }
 </script>
 
@@ -74,14 +91,12 @@
         overflow: hidden;
         background-color: whitesmoke;
         display: flex;
-        // z-index: 3;
         height: calc(100vh - 60px);
         justify-content: center;
         align-self: center;
         align-items: center;
         margin: 0 auto;
         width: 100%;
-        // max-width: 1600px;
         a { 
             text-decoration: none;
             color: #4A7C59;
@@ -142,7 +157,6 @@
                         }
                         background-repeat: no-repeat;
                         background-position: 8px center;
-                        // background-position-x: 8px;
                         background-size: 12px auto;
                     }
                     input:-webkit-autofill,
