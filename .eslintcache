@@ -2,30 +2,30 @@
   {
     "C:\\Users\\phill\\developement\\FoodTruckProject\\components\\register.vue": "1",
     "C:\\Users\\phill\\developement\\FoodTruckProject\\components\\nav.vue": "2",
-    "C:\\Users\\phill\\developement\\FoodTruckProject\\pages\\login.vue": "3",
-    "C:\\Users\\phill\\developement\\FoodTruckProject\\components\\login.vue": "4"
+    "C:\\Users\\phill\\developement\\FoodTruckProject\\components\\login.vue": "3",
+    "C:\\Users\\phill\\developement\\FoodTruckProject\\pages\\login.vue": "4"
   },
   {
     "size": 5032,
-    "mtime": 1635893344749,
+    "mtime": 1635902462949,
     "results": "5",
     "hashOfConfig": "6"
   },
   {
     "size": 2095,
-    "mtime": 1635893344745,
+    "mtime": 1635902462949,
     "results": "7",
     "hashOfConfig": "6"
   },
   {
-    "size": 384,
-    "mtime": 1635893344811,
+    "size": 7070,
+    "mtime": 1635902462948,
     "results": "8",
     "hashOfConfig": "6"
   },
   {
-    "size": 7070,
-    "mtime": 1635893344743,
+    "size": 384,
+    "mtime": 1635902463019,
     "results": "9",
     "hashOfConfig": "6"
   },
@@ -38,7 +38,7 @@
     "fixableErrorCount": 0,
     "fixableWarningCount": 0
   },
-  "126v8ab",
+  "1tiaiwo",
   {
     "filePath": "12",
     "messages": "13",
@@ -54,19 +54,19 @@
     "messages": "15",
     "errorCount": 0,
     "fatalErrorCount": 0,
-    "warningCount": 0,
+    "warningCount": 2,
     "fixableErrorCount": 0,
-    "fixableWarningCount": 0
+    "fixableWarningCount": 2,
+    "source": null
   },
   {
     "filePath": "16",
     "messages": "17",
     "errorCount": 0,
     "fatalErrorCount": 0,
-    "warningCount": 2,
+    "warningCount": 0,
     "fixableErrorCount": 0,
-    "fixableWarningCount": 2,
-    "source": null
+    "fixableWarningCount": 0
   },
   "C:\\Users\\phill\\developement\\FoodTruckProject\\components\\register.vue",
   [],
@@ -74,13 +74,13 @@
   [
     "18"
   ],
-  "C:\\Users\\phill\\developement\\FoodTruckProject\\pages\\login.vue",
-  [],
   "C:\\Users\\phill\\developement\\FoodTruckProject\\components\\login.vue",
   [
     "19",
     "20"
   ],
+  "C:\\Users\\phill\\developement\\FoodTruckProject\\pages\\login.vue",
+  [],
   {
     "ruleId": "21",
     "severity": 1,
