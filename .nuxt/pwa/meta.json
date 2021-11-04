@@ -1,5 +1,5 @@
 {
-  "title": "foodTrucks",
+  "title": "foodtrucks",
   "meta": [
     {
       "hid": "charset",
@@ -18,7 +18,7 @@
     {
       "hid": "apple-mobile-web-app-title",
       "name": "apple-mobile-web-app-title",
-      "content": "foodTrucks"
+      "content": "foodtrucks"
     },
     {
       "hid": "description",
@@ -35,13 +35,13 @@
       "hid": "og:title",
       "name": "og:title",
       "property": "og:title",
-      "content": "foodTrucks"
+      "content": "foodtrucks"
     },
     {
       "hid": "og:site_name",
       "name": "og:site_name",
       "property": "og:site_name",
-      "content": "foodTrucks"
+      "content": "foodtrucks"
     },
     {
       "hid": "og:description",
@@ -64,7 +64,7 @@
     },
     {
       "rel": "manifest",
-      "href": "/_nuxt/manifest.784ee83b.json",
+      "href": "/_nuxt/manifest.836edcaf.json",
       "hid": "manifest"
     }
   ],

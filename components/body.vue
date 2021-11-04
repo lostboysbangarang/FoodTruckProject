@@ -3,12 +3,30 @@
     <div class="container"></div>
     <div class="welcome">
       <div class="logo">
+        <h1 v-anime="translate" class="title">Food Truck </h1>
         <img src="~/assets/food-truck.svg" alt="" />
       </div>
     </div>
   </div>
 </template>
-
+<script>
+export default {
+    data() {
+      return {
+        rotate: {
+          rotate: 360,
+          backgroundColor: ['#2f495e', '#00c58e'],
+          duration: 3000,
+          loop: true
+        },
+        translate: {
+          translatex: 250,
+          duration: 5000
+        }
+      }
+    }
+  }
+</script>
 <style lang="scss" scoped>
 body {
   margin: 0;
@@ -55,6 +73,11 @@ body {
         width: auto;
         height: 100%;
       }
+    }
+   .title{
+      display: flex;
+      justify-content: center;
+      padding-top: 20%;
     }
   }
 }
