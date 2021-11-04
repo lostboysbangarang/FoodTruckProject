@@ -52,19 +52,6 @@ export default {
 	components: true,
 	extractCSS: true,
 
-<<<<<<< HEAD
-  // Auto import components: https://go.nuxtjs.dev/config-components
-  components: true,
-  extractCSS: true,
-  animejs: true,
-
-  // Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
-  buildModules: [
-    // https://go.nuxtjs.dev/eslint
-    '@nuxtjs/eslint-module',
-    'nuxt-animejs'
-  ],
-=======
 	// Modules for dev and build (recommended): https://go.nuxtjs.dev/config-modules
 	buildModules: [
 		// https://go.nuxtjs.dev/eslint
@@ -99,7 +86,6 @@ export default {
 		baseURL: '/',
 		credentials: true,
 	},
->>>>>>> f05dbb1e095e6020b6bdcdecd6ebbf282bc3da49
 
 	// PWA module configuration: https://go.nuxtjs.dev/pwa
 	pwa: {

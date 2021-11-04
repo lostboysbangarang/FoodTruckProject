@@ -3,25 +3,28 @@
     "name": "login",
     "path": "/login",
     "component": "/Users/dahirabdi/project/FoodTruckProject/pages/login.vue",
-    "chunkName": "pages/login"
+    "chunkName": "pages/login",
+    "_name": "_90676fec"
   },
   {
     "name": "register",
     "path": "/register",
     "component": "/Users/dahirabdi/project/FoodTruckProject/pages/register.vue",
-    "chunkName": "pages/register"
+    "chunkName": "pages/register",
+    "_name": "_f87746dc"
   },
   {
     "name": "trucks",
     "path": "/trucks",
-    "component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/trucks.vue",
+    "component": "/Users/dahirabdi/project/FoodTruckProject/pages/trucks.vue",
     "chunkName": "pages/trucks",
-    "_name": "_1665e3a8"
+    "_name": "_104db723"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/dahirabdi/project/FoodTruckProject/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_23b6b61a"
   }
 ]

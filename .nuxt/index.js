@@ -20,10 +20,9 @@ import nuxt_plugin_workbox_0e8d02a7 from 'nuxt_plugin_workbox_0e8d02a7' // Sourc
 import nuxt_plugin_metaplugin_3468b2ba from 'nuxt_plugin_metaplugin_3468b2ba' // Source: ./pwa/meta.plugin.js (mode: 'all')
 import nuxt_plugin_iconplugin_3910582e from 'nuxt_plugin_iconplugin_3910582e' // Source: ./pwa/icon.plugin.js (mode: 'all')
 import nuxt_plugin_axios_a5ef176a from 'nuxt_plugin_axios_a5ef176a' // Source: ./axios.js (mode: 'all')
-import nuxt_plugin_animejsModule_6f1d6f50 from 'nuxt_plugin_animejsModule_6f1d6f50' // Source: ./animejsModule.js (mode: 'all')
 import nuxt_plugin_veevalidate_1a0c1998 from 'nuxt_plugin_veevalidate_1a0c1998' // Source: ../plugins/vee-validate.js (mode: 'all')
 import nuxt_plugin_scaletext_1f68ff1e from 'nuxt_plugin_scaletext_1f68ff1e' // Source: ../plugins/scale-text.js (mode: 'all')
-import nuxt_plugin_auth_6387a920 from 'nuxt_plugin_auth_6387a920' // Source: ./auth.js (mode: 'all')
+import nuxt_plugin_auth_6425ff85 from 'nuxt_plugin_auth_6425ff85' // Source: ./auth.js (mode: 'all')
 
 // Component: <ClientOnly>
 Vue.component(ClientOnly.name, ClientOnly)
@@ -248,10 +247,6 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_axios_a5ef176a(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_animejsModule_6f1d6f50 === 'function') {
-    await nuxt_plugin_animejsModule_6f1d6f50(app.context, inject)
-  }
-
   if (typeof nuxt_plugin_veevalidate_1a0c1998 === 'function') {
     await nuxt_plugin_veevalidate_1a0c1998(app.context, inject)
   }
@@ -260,8 +255,8 @@ async function createApp(ssrContext, config = {}) {
     await nuxt_plugin_scaletext_1f68ff1e(app.context, inject)
   }
 
-  if (typeof nuxt_plugin_auth_6387a920 === 'function') {
-    await nuxt_plugin_auth_6387a920(app.context, inject)
+  if (typeof nuxt_plugin_auth_6425ff85 === 'function') {
+    await nuxt_plugin_auth_6425ff85(app.context, inject)
   }
 
   // Lock enablePreview in context
