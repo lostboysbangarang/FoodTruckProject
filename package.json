@@ -27,8 +27,7 @@
 		"sequelize": "^6.9.0",
 		"validation-utils": "^7.0.0",
 		"validations": "^0.1.3",
-		"vee-validate": "^3.4.13",
-		"vue-resize-text": "^0.1.1"
+		"vee-validate": "^3.4.13"
 	},
 	"devDependencies": {
 		"@babel/eslint-parser": "^7.16.0",
