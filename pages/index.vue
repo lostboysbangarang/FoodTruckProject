@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<button @click="successi">clickme</button>
+		<!-- <button @click="successi">clickme</button> -->
 		<Nav />
 		<Body />
 	</div>
@@ -17,12 +17,12 @@ export default {
 }
 </script>
 
-<style lang="scss">
-body {
-	overflow-x: hidden;
-	margin: 0;
-	padding: 0;
-	width: 100%;
-	height: 100%;
-}
+<style lang="scss" scopped>
+// body {
+// 	overflow-x: hidden;
+// 	margin: 0;
+// 	padding: 0;
+// 	width: 100%;
+// 	height: 100%;
+// }
 </style>
