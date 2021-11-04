@@ -2,6 +2,9 @@
   "Body": {
     "description": "Auto imported from components/body.vue"
   },
+  "Explore": {
+    "description": "Auto imported from components/explore.vue"
+  },
   "Login": {
     "description": "Auto imported from components/login.vue"
   },
@@ -10,5 +13,11 @@
   },
   "Register": {
     "description": "Auto imported from components/register.vue"
+  },
+  "Saved": {
+    "description": "Auto imported from components/saved.vue"
+  },
+  "Truckbody": {
+    "description": "Auto imported from components/truckbody.vue"
   }
 }
