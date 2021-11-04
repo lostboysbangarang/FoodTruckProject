@@ -1,7 +1,33 @@
 <template>
 	<div class="main">
 		<div class="container"></div>
-		<div class="welcome">
+		<div v-if="!mobile" class="welcome">
+			<div class="wrapper">
+				<div class="logo">
+					<img src="~/assets/food-truck.svg" alt="" />
+				</div>
+				<div 	
+						v-if="$auth.$state.loggedIn"
+						class="userIntro">
+						<h1>Welcome {{$auth.$state.user}}! So glad you're hungry!</h1>
+				</div>
+				<div 	
+						v-else
+						id="after"
+						class="userIntro">
+						<h1>Please <nuxt-link class="links" to="/login">Login</nuxt-link> or <nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!</h1>
+						<h3>Don't forget to turn off AddBlock!</h3>
+				</div>
+				<ul		
+						v-if="$auth.$state.loggedIn"
+						class="buttons">
+					<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
+					<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
+					<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
+				</ul>
+			</div>
+		</div>
+		<div v-else id="mobile" class="welcome">
 			<div class="wrapper">
 				<div class="logo">
 					<img src="~/assets/food-truck.svg" alt="" />
@@ -32,7 +58,27 @@
 
 <script>
 export default {
-	name: 'MainBody'
+	name: 'MainBody',
+	data() {
+		return {
+			mobile: false,
+		}
+	},
+	mounted() {
+		this.screenSize();    
+    },
+	methods: {
+		screenSize() {
+			if(process.browser) {
+				// console.log(window)
+				if(window.innerWidth < 1200) {
+					this.mobile = true;
+					// console.log(this.mobile);
+				}
+			}
+
+		},
+	}
 }
 </script>
 
@@ -59,10 +105,10 @@ export default {
 		@media screen and (max-width: 1100px) {
 			width: 80vw;
 			margin-left: 10vw;
-			margin-top: calc(35vh - 60px);
-			height: 30vh;
+			margin-top: calc(20vh - 60px);
+			height: 60vh;
 		}
-		position: relative;
+		position: absolute;
 		margin-left: 20vw;
 		border-radius: 32px;
 		z-index: 2;
@@ -110,7 +156,9 @@ export default {
 				display: flex;
 				justify-content: space-between;
 				list-style: none;
-				margin-top: 8%;
+				@media(max-width: 1200px) {
+					margin-top: 8%;
+				}
 				& li {
 					padding: 12px 20px 12px;
 					outline: 2px solid #4A7C59;
@@ -136,6 +184,35 @@ export default {
 					}
 					& .button {
 						font-size: 20px;
+					}
+				}
+			}
+		}
+		&#mobile {
+			margin-top: calc(20vh - 60px);
+			width: 90vw;
+			height: 60vh;
+			margin-left: 5vw;
+			& .wrapper {
+				position: relative;
+				& .logo {
+					position: relative;
+					top: -10%;
+
+				}
+				& h1 {
+					font-size: 24px;
+				}
+				& .userIntro{
+					margin-top: -16%;
+					&#after {
+						margin-top: -8%;
+					}
+				}
+				& .buttons {
+					// justify-content: flex-start;
+					& li {
+						padding: 4px 12px 4px;
 					}
 				}
 			}

@@ -5,18 +5,24 @@
                 <div class="locationbar_wrapper_icon">
                     <Location/>
                 </div>
-                <div class="locationbar_wrapper_location" v-resize-text>
-                    {{this.info.city}}
+                <div class="locationbar_wrapper_location">
+                    {{info.city}}
                 </div>
             </div>
         </div>
+        <div>
+            <div>{{info.lat}}</div>
+            <div>{{info.lon}}</div>
+        </div>
     </div>
 </template>
+
 
 <script>
 import axios from 'axios';
 import ResizeText from 'vue-resize-text';
 import Location from '~/assets/svgs/locationIII.svg?inline';
+console.log(ResizeText);
 export default {
     name: 'TruckCard',
     components: {
@@ -35,7 +41,8 @@ export default {
                 lon: null,
                 state: null,
                 zip: null,
-            }
+            },
+            mobile: false,
         }
     },
     async mounted() {
@@ -54,7 +61,27 @@ export default {
             console.log(e);
 
         }
+        try {
+            this.screenSize();    
+        }
+        catch (e) {
+            console.log(e)
+        }
+    },
+    methods: {
+        screenSize() {
+            if(process.browser) {
+                // console.log(window)
+                if(window.innerWidth < 1200) {
+                    this.mobile = true;
+                    console.log(this.mobile);
+                }
+            }
+
+        }
     }
+    // mounted: function() {
+    // }
 }
 </script>
 
@@ -71,6 +98,7 @@ export default {
             top: -12%;
             height: 100%;
             width: 20%;
+            min-width: 200px;
             background-color: #B583A6;
             border-radius: 30px;
             display: flex;
@@ -89,10 +117,14 @@ export default {
             &_location {
                 position: relative;
                 // float: left;
-                font-size: fit-content;
-                width: 60%;
-                height: 100%;
-                background-color: #8FC0A9;
+                right: 8%;
+                font-size: 2vw;
+                @media (max-width: 1200px) {
+                    font-size: 24px;
+                }
+                // width: 60%;
+                // height: 100%;
+                // background-color: #8FC0A9;
 
                 
             }

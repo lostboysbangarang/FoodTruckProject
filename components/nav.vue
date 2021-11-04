@@ -2,21 +2,25 @@
 	<div class="container">
 		<header>
 			<nuxt-link id="logo" to="/">FoodTrucks</nuxt-link>
-			<ul v-if="$auth.$state.loggedIn">
+			<ul v-if="$auth.$state.loggedIn && !mobile">
 				<li><nuxt-link to="/">Home</nuxt-link></li>
 				<li><div @click="logout">Logout</div></li>
 				<!-- <li><div>{{loggedInUser.username}}</div></li> -->
 			</ul>
-			<ul v-else>
+			<ul v-else-if="$auth.$state.loggedIn && mobile" class='mobile'>
 				<li><nuxt-link to="/">Home</nuxt-link></li>
-				<li>
-					<nuxt-link to="/login">Login</nuxt-link>
-				</li>
-				<li>
-					<nuxt-link to="/register"
-						>Register</nuxt-link
-					>
-				</li>
+				<li><div @click="logout">Logout</div></li>
+				<!-- <li><div>{{loggedInUser.username}}</div></li> -->
+			</ul>
+			<ul v-else-if="!mobile">
+				<!-- <li><nuxt-link to="/">Home</nuxt-link></li> -->
+				<li><nuxt-link to="/login">Login</nuxt-link></li>
+				<li><nuxt-link to="/register">Register</nuxt-link></li>
+			</ul>
+			<ul v-else-if="mobile" class="mobile">
+				<!-- <li><nuxt-link to="/">Home</nuxt-link></li> -->
+				<li><nuxt-link to="/login">Login</nuxt-link></li>
+				<li><nuxt-link to="/register">Register</nuxt-link></li>
 			</ul>
 		</header>
 	</div>
@@ -26,9 +30,14 @@
 import { mapState } from 'vuex'
 export default {
 	name: 'NavCard',
+	mounted() {
+		this.screenSize();    
+    },
 	data() {
 		return { 
 			successi: this.$auth.$state.loggedIn,
+			mobile: false,
+
 			// subject: this.$auth.$state.user.
 		}
 	},
@@ -39,6 +48,16 @@ export default {
 		async logout() {
 			await this.$auth.logout()
 			this.$router.push('/login')
+		},
+		screenSize() {
+			if(process.browser) {
+				// console.log(window)
+				if(window.innerWidth < 1200) {
+					this.mobile = true;
+					// console.log(this.mobile);
+				}
+			}
+
 		},
 	},
 }
@@ -104,6 +123,10 @@ export default {
 						top: 0px;
 						left: 0px;
 					}
+				}
+				&.mobile {
+					flex-direction: column;
+					min-width: 60px;
 				}
 			}
 		}
