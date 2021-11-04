@@ -3,7 +3,7 @@
     <div class="container"></div>
     <div class="welcome">
       <div class="logo">
-        <h1 v-anime="translate" class="title">Food Truck </h1>
+        <h1 v-anime="rotate" class="title">Food Truck </h1>
         <img src="~/assets/food-truck.svg" alt="" />
       </div>
     </div>
@@ -14,15 +14,14 @@ export default {
     data() {
       return {
         rotate: {
-          rotate: 360,
-          backgroundColor: ['#2f495e', '#00c58e'],
+          scale: [14,1],
+          opacity: [0,1],
+          easing: "easeOutCirc",
           duration: 3000,
+          delay: (el, i) => 3000 * i,
           loop: true
         },
-        translate: {
-          translatex: 250,
-          duration: 5000
-        }
+        
       }
     }
   }
