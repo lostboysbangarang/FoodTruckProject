@@ -1,8 +1,8 @@
 <template>
-  <v-container>
-    <Nav />
-    <Register />
-  </v-container>
+	<v-container>
+		<Nav />
+		<Register />
+	</v-container>
 </template>
 
 <script>

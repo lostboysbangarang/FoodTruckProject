@@ -12,6 +12,13 @@
     "chunkName": "pages/register"
   },
   {
+    "name": "trucks",
+    "path": "/trucks",
+    "component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/trucks.vue",
+    "chunkName": "pages/trucks",
+    "_name": "_1665e3a8"
+  },
+  {
     "name": "index",
     "path": "/",
     "component": "/Users/dahirabdi/project/FoodTruckProject/pages/index.vue",
