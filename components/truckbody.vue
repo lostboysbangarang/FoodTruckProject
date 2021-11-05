@@ -20,17 +20,12 @@
 
 <script>
 import axios from 'axios';
-import ResizeText from 'vue-resize-text';
 import Location from '~/assets/svgs/locationIII.svg?inline';
-console.log(ResizeText);
 export default {
     name: 'TruckCard',
     components: {
         Location,
 
-    },
-    directives: {
-        ResizeText
     },
     data() {
         return {
