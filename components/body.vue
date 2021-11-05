@@ -3,29 +3,12 @@
     <div class="container"></div>
     <div class="welcome">
       <div class="logo">
-        <h1 v-anime="rotate" class="title">Food Truck </h1>
+        <h1 class="title">Food Truck </h1>
         <img src="~/assets/food-truck.svg" alt="" />
       </div>
     </div>
   </div>
 </template>
-<script>
-export default {
-    data() {
-      return {
-        rotate: {
-          scale: [14,1],
-          opacity: [0,1],
-          easing: "easeOutCirc",
-          duration: 3000,
-          delay: (el, i) => 3000 * i,
-          loop: true
-        },
-        
-      }
-    }
-  }
-</script>
 <style lang="scss" scoped>
 body {
   margin: 0;
