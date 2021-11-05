@@ -9,13 +9,6 @@
     </div>
   </div>
 </template>
-<style lang="scss" scoped>
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  overflow-x: hidden;
-</template>
 
 <script>
 export default {
