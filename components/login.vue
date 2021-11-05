@@ -4,67 +4,34 @@
 			<form :disabled="loading" @submit.prevent="submissive">
 				<p class="register">
 					Don't have an account? Register now:
-					<nuxt-link to="/register"
-						>Register</nuxt-link
-					>
+					<nuxt-link to="/register">Register</nuxt-link>
 				</p>
 				<h2>Login to FoodTrucks</h2>
 				<div class="inputs">
 					<div class="input">
-						<ValidationProvider
-							v-slot="{ errors }"
-							name="email"
-							rules="required|email"
-						>
+						<ValidationProvider v-slot="{ errors }" name="email" rules="required|email">
 							<input
 								id="email"
-								v-model="
-									form.email
-								"
+								v-model="form.email"
 								type="email"
 								placeholder="Your Login Email"
 							/>
-							<span
-								class="
-									input-invalid-message
-								"
-								>{{
-									errors[0]
-								}}</span
-							>
+							<span class="input-invalid-message">{{ errors[0] }}</span>
 						</ValidationProvider>
 					</div>
 					<div class="input">
-						<ValidationProvider
-							v-slot="{ errors }"
-							name="password"
-							rules="required|min:6|max:35"
-						>
+						<ValidationProvider v-slot="{ errors }" name="password" rules="required|min:6|max:35">
 							<input
 								id="password"
-								v-model="
-									form.password
-								"
+								v-model="form.password"
 								type="password"
 								placeholder="Your Login Password"
 							/>
-							<span
-								class="
-									input-invalid-message
-								"
-								>{{
-									errors[0]
-								}}</span
-							>
+							<span class="input-invalid-message">{{ errors[0] }}</span>
 						</ValidationProvider>
 					</div>
 				</div>
-				<button
-					class="button"
-					:disabled="invalid || loading"
-				>
-					Login
-				</button>
+				<button class="button" :disabled="invalid || loading">Login</button>
 				<!-- <span class="error">Errors: {{error}}</span> -->
 				<div class="angle"></div>
 			</form>
@@ -102,16 +69,20 @@ export default {
 	},
 	methods: {
 		async submissive(event) {
+			/*
 			try {
 				this.loading = true
+
 				await this.$axios
 					.post('api/login', this.form)
 					.then((response) => {
 						console.log(response.data)
+
 						this.success = response.data.boo
 						this.username =
 							response.data.username
 						this.errored = false
+
 						console.log(
 							`\nSUCCESS:\t`,
 							this.success
@@ -131,36 +102,44 @@ export default {
 				console.log(`\nERROR ERROR WE GON DIE\n`, e)
 				this.error = e.response.data.message
 			}
-			try {
-				const seccsi = await this.$auth.loginWith(
-					'local',
-					{
-						data: {
-							email: this.form.email,
-							password: this.form
-								.password,
-						},
-					}
-				)
-				if (this.success && seccsi) {
-					await this.$auth.setUser(this.username)
-					this.$auth.$state.loggedIn =
-						this.success
-				}
+			*/
+			// try {
+
+			await this.$auth
+				.loginWith('cookie', {
+					data: {
+						email: this.form.email,
+						password: this.form.password,
+					},
+				})
+				.then(() => {
+					// todo: Send them to the logged in page
+					this.$router.push('/')
+					console.log('logged in', arguments)
+				})
+				.catch((error) => {
+					// todo: Tell the user they did bad
+					console.log('login error', error)
+				})
+
+			/*
+			if (this.success && seccsi) {
+				await this.$auth.setUser(this.username)
+				this.$auth.$state.loggedIn = this.success
+			}
+*/
+			/*
 			} catch (e) {
 				console.log(`\nERROR ERROR WE GON DIE\n`, e)
 				this.error = e.response.data.message
 			}
+			*/
 		},
 		async seccsi() {
 			try {
-				await axios
-					.get('api/me', this.form)
-					.then((response) => {
-						this.$auth.setUser(
-							response.data
-						)
-					})
+				await axios.get('api/me', this.form).then((response) => {
+					this.$auth.setUser(response.data)
+				})
 			} catch (e) {
 				console.log(`\nERROR ERROR WE GON DIE\n`, e)
 				this.error = e.response.data.message
@@ -250,8 +229,7 @@ body {
 				input:-webkit-autofill:hover,
 				input:-webkit-autofill:focus,
 				input:-webkit-autofill:active {
-					-webkit-box-shadow: 0 0 0 30px #faf3dd
-						inset !important;
+					-webkit-box-shadow: 0 0 0 30px #faf3dd inset !important;
 					box-shadow: 0 0 0 30px #faf3dd inset !important;
 				}
 				.icon {

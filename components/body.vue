@@ -1,62 +1,58 @@
 <template>
-	<div class="main">
-		<div class="container"></div>
-		<div v-if="!mobile" class="welcome">
-			<div class="wrapper">
-				<div class="logo">
-					<img src="~/assets/food-truck.svg" alt="" />
+	<ClientOnly>
+		<div class="main">
+			<div class="container"></div>
+			<div v-if="!mobile" class="welcome">
+				<div class="wrapper">
+					<div class="logo">
+						<img src="~/assets/food-truck.svg" alt="" />
+					</div>
+					<div v-if="isAuthenticated" class="userIntro">
+						<h1>Welcome {{ loggedInUser.username }}! So glad you're hungry!</h1>
+					</div>
+					<div v-else id="after" class="userIntro">
+						<h1>
+							Please <nuxt-link class="links" to="/login">Login</nuxt-link> or
+							<nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!
+						</h1>
+						<h3>Don't forget to turn off AdBlock!</h3>
+					</div>
+					<ul v-if="isAuthenticated" class="buttons">
+						<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
+						<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
+						<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
+					</ul>
 				</div>
-				<div 	
-						v-if="$auth.$state.loggedIn"
-						class="userIntro">
-						<h1>Welcome {{$auth.$state.user}}! So glad you're hungry!</h1>
+			</div>
+			<div v-else id="mobile" class="welcome">
+				<div class="wrapper">
+					<div class="logo">
+						<img src="~/assets/food-truck.svg" alt="" />
+					</div>
+					<div v-if="isAuthenticated" class="userIntro">
+						<h1>Welcome {{ loggedInUser.username }}! So glad you're hungry!</h1>
+					</div>
+					<div v-else id="after" class="userIntro">
+						<h1>
+							Please <nuxt-link class="links" to="/login">Login</nuxt-link> or
+							<nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!
+						</h1>
+						<h3>Don't forget to turn off AdBlock!</h3>
+					</div>
+					<ul v-if="isAuthenticated" class="buttons">
+						<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
+						<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
+						<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
+					</ul>
 				</div>
-				<div 	
-						v-else
-						id="after"
-						class="userIntro">
-						<h1>Please <nuxt-link class="links" to="/login">Login</nuxt-link> or <nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!</h1>
-						<h3>Don't forget to turn off AddBlock!</h3>
-				</div>
-				<ul		
-						v-if="$auth.$state.loggedIn"
-						class="buttons">
-					<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-					<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
-					<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
-				</ul>
 			</div>
 		</div>
-		<div v-else id="mobile" class="welcome">
-			<div class="wrapper">
-				<div class="logo">
-					<img src="~/assets/food-truck.svg" alt="" />
-				</div>
-				<div 	
-						v-if="$auth.$state.loggedIn"
-						class="userIntro">
-						<h1>Welcome {{$auth.$state.user}}! So glad you're hungry!</h1>
-				</div>
-				<div 	
-						v-else
-						id="after"
-						class="userIntro">
-						<h1>Please <nuxt-link class="links" to="/login">Login</nuxt-link> or <nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!</h1>
-						<h3>Don't forget to turn off AddBlock!</h3>
-				</div>
-				<ul		
-						v-if="$auth.$state.loggedIn"
-						class="buttons">
-					<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-					<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
-					<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+	</ClientOnly>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
 	name: 'MainBody',
 	data() {
@@ -64,30 +60,33 @@ export default {
 			mobile: false,
 		}
 	},
+	computed: {
+		...mapGetters(['isAuthenticated', 'loggedInUser']),
+	},
+
 	mounted() {
-		this.screenSize();    
-    },
+		this.screenSize()
+	},
 	methods: {
 		screenSize() {
-			if(process.browser) {
+			if (process.browser) {
 				// console.log(window)
-				if(window.innerWidth < 1200) {
-					this.mobile = true;
+				if (window.innerWidth < 1200) {
+					this.mobile = true
 					// console.log(this.mobile);
 				}
 			}
-
 		},
-	}
+	},
 }
 </script>
-
 
 <style lang="scss" scoped>
 .main {
 	& a {
 		text-decoration: none;
-		&:link, &:visited {
+		&:link,
+		&:visited {
 			color: inherit;
 		}
 	}
@@ -147,7 +146,7 @@ export default {
 				&#after {
 					margin-top: 8%;
 					& .links {
-						color: #C8D5B9;
+						color: #c8d5b9;
 					}
 				}
 			}
@@ -156,19 +155,19 @@ export default {
 				display: flex;
 				justify-content: space-between;
 				list-style: none;
-				@media(max-width: 1200px) {
+				@media (max-width: 1200px) {
 					margin-top: 8%;
 				}
 				& li {
 					padding: 12px 20px 12px;
-					outline: 2px solid #4A7C59;
+					outline: 2px solid #4a7c59;
 					cursor: pointer;
 					position: relative;
 					background-color: rgba(0, 0, 0, 0);
 					z-index: 1;
-					color: #68B0AB;
+					color: #68b0ab;
 					&:after {
-						content: "";
+						content: '';
 						background-color: #faf3dd;
 						width: 100%;
 						z-index: -1;
@@ -178,7 +177,7 @@ export default {
 						left: 4px;
 						transition: 0.2s;
 					}
-						&:hover:after {
+					&:hover:after {
 						top: 0px;
 						left: 0px;
 					}
@@ -198,12 +197,11 @@ export default {
 				& .logo {
 					position: relative;
 					top: -10%;
-
 				}
 				& h1 {
 					font-size: 24px;
 				}
-				& .userIntro{
+				& .userIntro {
 					margin-top: -16%;
 					&#after {
 						margin-top: -8%;

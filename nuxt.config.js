@@ -33,9 +33,7 @@ export default {
 	css: ['~assets/css/main.css'],
 
 	// Plugins to run before rendering page: https://go.nuxtjs.dev/config-plugins
-	plugins: [
-		'~/plugins/vee-validate.js',
-	],
+	plugins: ['~/plugins/vee-validate.js'],
 
 	// Auto import components: https://go.nuxtjs.dev/config-components
 	components: true,
@@ -45,7 +43,7 @@ export default {
 	buildModules: [
 		// https://go.nuxtjs.dev/eslint
 		'@nuxtjs/eslint-module',
-		"@nuxtjs/svg",
+		'@nuxtjs/svg',
 	],
 
 	// Modules: https://go.nuxtjs.dev/config-modules
@@ -56,19 +54,28 @@ export default {
 		'@nuxtjs/pwa',
 		// https://go.nuxtjs.dev/content
 		'@nuxt/content',
-		'@nuxtjs/auth-next'
+		'@nuxtjs/auth-next',
 	],
+
 	auth: {
 		strategies: {
-			local: {
+			cookie: {
 				endpoints: {
-					login: {url: 'login', method: 'post', propertyName: 'data.token'},
-					user: {url: 'me', method: 'get', propertyName: 'data'},
+					login: {
+						url: 'api/login',
+						method: 'post',
+						propertyName: 'data.token',
+					},
+					user: {
+						url: 'api/me',
+						method: 'get',
+						propertyName: 'data',
+					},
 					logout: false,
 				},
 				autoFetchUser: false,
-			}
-		}
+			},
+		},
 	},
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {

@@ -11,9 +11,9 @@ export default {
 	name: 'IndexPage',
 	methods: {
 		successi() {
-			console.log(this.$auth);
-		}
-	}
+			console.log(this.$auth)
+		},
+	},
 }
 </script>
 
