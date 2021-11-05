@@ -1,7 +1,7 @@
 const express = require('express')
 const config = require('./config')
 const mysql = require('mysql2')
-// const db = mysql.createConnection(config.db)
+const cookieSession = require('cookie-session')
 
 const app = express()
 app.use(express.json())
@@ -10,12 +10,17 @@ app.use((req, res, next) => {
 	console.log(`API REQUEST @ ${req.url}\n\tRequest:\n`, req.body)
 	next()
 })
-// app.get('/test', (req, res) => {
-// 	db.query('select 1+1', (error, results) => {
-// 		if (error) return res.status(500).json({ type: 'error', error })
-// 		res.json({ type: 'success', message: 'Test OK', results })
-// 	})
-// })
+
+app.set('trust proxy', 1) // trust first proxy
+
+app.use(
+	cookieSession({
+		name: 'session',
+		keys: ['MIGfMA0GCSqGSIb3DQEBAQUAA4GNADCBiQ', 'KBgQDHneX1TGQ7F1+QfhGxRocudH2u0OxON'],
+	})
+)
+
+//include routes
 const auth = require('./routes/auth')
 
 app.use(auth)
@@ -25,4 +30,5 @@ module.exports = app
 
 //uncomment this to create/update all database tables. recomment it afterwards to avoid console spam
 //const { Sequelize } = require('sequelize')
+//const UserModel = require('../models/user')
 //sequelize.sync({ alter: true });

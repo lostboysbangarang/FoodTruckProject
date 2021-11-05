@@ -1,16 +1,14 @@
 <template>
-    <div>
-        <Nav/>
-        <Login/>
-    </div>
+	<div>
+		<Nav />
+		<Login />
+	</div>
 </template>
 
 <script>
-    export default {
-        name: 'RegisterForm',
-    }
+export default {
+	name: 'RegisterForm',
+}
 </script>
 
-<style>
-    
-</style>
+<style></style>

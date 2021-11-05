@@ -1,6 +1,7 @@
 const { Sequelize } = require('sequelize')
 require('dotenv')
 
+// todo: Move credentials including DB name to environment variables
 const sequelize = new Sequelize(
 	'foodtruck',
 	'foodmaker',
