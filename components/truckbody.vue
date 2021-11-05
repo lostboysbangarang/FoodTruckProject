@@ -14,17 +14,42 @@
             <div>{{info.lat}}</div>
             <div>{{info.lon}}</div>
         </div>
+        <ValidationObserver v-slot="{invalid}">
+            <form :disabled="loading" @submit.prevent="test">
+                <ValidationProvider
+                                        v-slot="{errors}"
+                                        name="search.lat"
+                                        rules="required">
+                    <div
+                            class="form-group"
+                            label="Lat:"
+                            label-for="lat">
+                        <input 
+                                id="lat"
+                                v-model="search.lat"
+                                type="text"/>
+                        <span class="input-invalid-message">{{errors[0]}}</span>
+
+                    </div>
+
+                </ValidationProvider>
+                <button class="button" :disabled="invalid || loading">click me</button>
+            </form>
+        </ValidationObserver>
     </div>
 </template>
 
 
 <script>
+import { ValidationObserver, ValidationProvider } from 'vee-validate'
 import axios from 'axios';
 import Location from '~/assets/svgs/locationIII.svg?inline';
 export default {
     name: 'TruckCard',
     components: {
         Location,
+        ValidationObserver,
+        ValidationProvider,
 
     },
     data() {
@@ -36,6 +61,15 @@ export default {
                 lon: null,
                 state: null,
                 zip: null,
+            },
+            yelp: {
+                term: 'foodtruck',
+                lat: null,
+                lon: null,
+            },
+            search: {
+                lat: null,
+                lon: null,
             },
             mobile: false,
         }
@@ -72,7 +106,9 @@ export default {
                     console.log(this.mobile);
                 }
             }
-
+        },
+        test(event) {
+            this.test(event);
         }
     }
     // mounted: function() {

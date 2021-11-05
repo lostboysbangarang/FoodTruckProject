@@ -21,6 +21,7 @@ import nuxt_plugin_metaplugin_6d228a3f from 'nuxt_plugin_metaplugin_6d228a3f' //
 import nuxt_plugin_iconplugin_71ca2fb3 from 'nuxt_plugin_iconplugin_71ca2fb3' // Source: ./pwa/icon.plugin.js (mode: 'all')
 import nuxt_plugin_axios_cc4803e0 from 'nuxt_plugin_axios_cc4803e0' // Source: ./axios.js (mode: 'all')
 import nuxt_plugin_veevalidate_1a0c1998 from 'nuxt_plugin_veevalidate_1a0c1998' // Source: ../plugins/vee-validate.js (mode: 'all')
+import nuxt_plugin_yelp_cbbf8b9e from 'nuxt_plugin_yelp_cbbf8b9e' // Source: ../plugins/yelp.js (mode: 'all')
 import nuxt_plugin_auth_6387a920 from 'nuxt_plugin_auth_6387a920' // Source: ./auth.js (mode: 'all')
 
 // Component: <ClientOnly>
@@ -248,6 +249,10 @@ async function createApp(ssrContext, config = {}) {
 
   if (typeof nuxt_plugin_veevalidate_1a0c1998 === 'function') {
     await nuxt_plugin_veevalidate_1a0c1998(app.context, inject)
+  }
+
+  if (typeof nuxt_plugin_yelp_cbbf8b9e === 'function') {
+    await nuxt_plugin_yelp_cbbf8b9e(app.context, inject)
   }
 
   if (typeof nuxt_plugin_auth_6387a920 === 'function') {

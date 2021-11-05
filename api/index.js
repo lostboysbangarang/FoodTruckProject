@@ -1,6 +1,6 @@
 const express = require('express')
-const config = require('./config')
-const mysql = require('mysql2')
+// const config = require('./config')
+// const mysql = require('mysql2')
 // const db = mysql.createConnection(config.db)
 
 const app = express()
@@ -19,7 +19,6 @@ app.use((req, res, next) => {
 const auth = require('./routes/auth')
 
 app.use(auth)
-app.listen(config.port)
 
 module.exports = app
 
