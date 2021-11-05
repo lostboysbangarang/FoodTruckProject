@@ -1,59 +1,37 @@
 <template>
-	<div class="main">
-		<div class="container"></div>
-		<div v-if="!mobile" class="welcome">
-			<div class="wrapper">
-				<div class="logo">
-					<img src="~/assets/food-truck.svg" alt="" />
-				</div>
-				<div 	
-						v-if="$auth.$state.loggedIn"
-						class="userIntro">
-						<h1>Welcome {{$auth.$state.user}}! So glad you're hungry!</h1>
-				</div>
-				<div 	
-						v-else
-						id="after"
-						class="userIntro">
-						<h1>Please <nuxt-link class="links" to="/login">Login</nuxt-link> or <nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!</h1>
-						<h3>Don't forget to turn off AddBlock!</h3>
-				</div>
-				<ul		
-						v-if="$auth.$state.loggedIn"
-						class="buttons">
-					<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-					<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
-					<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
-				</ul>
-			</div>
-		</div>
-		<div v-else id="mobile" class="welcome">
-			<div class="wrapper">
-				<div class="logo">
-					<img src="~/assets/food-truck.svg" alt="" />
-				</div>
-				<div 	
-						v-if="$auth.$state.loggedIn"
-						class="userIntro">
-						<h1>Welcome {{$auth.$state.user}}! So glad you're hungry!</h1>
-				</div>
-				<div 	
-						v-else
-						id="after"
-						class="userIntro">
-						<h1>Please <nuxt-link class="links" to="/login">Login</nuxt-link> or <nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!</h1>
-						<h3>Don't forget to turn off AddBlock!</h3>
-				</div>
-				<ul		
-						v-if="$auth.$state.loggedIn"
-						class="buttons">
-					<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-					<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
-					<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
-				</ul>
-			</div>
-		</div>
-	</div>
+  <div class="main">
+    <div class="container"></div>
+    <div class="welcome">
+      <div class="logo">
+        <h1 v-anime="rotate" class="title">Food Truck </h1>
+        <img src="~/assets/food-truck.svg" alt="" />
+      </div>
+    </div>
+  </div>
+</template>
+<script>
+export default {
+    data() {
+      return {
+        rotate: {
+          scale: [14,1],
+          opacity: [0,1],
+          easing: "easeOutCirc",
+          duration: 3000,
+          delay: (el, i) => 3000 * i,
+          loop: true
+        },
+        
+      }
+    }
+  }
+</script>
+<style lang="scss" scoped>
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  overflow-x: hidden;
 </template>
 
 <script>
