@@ -11,5 +11,6 @@ You can directly use them in pages and other components without the need to impo
 - `<Login>` | `<login>` (components/login.vue)
 - `<Nav>` | `<nav>` (components/nav.vue)
 - `<Register>` | `<register>` (components/register.vue)
+- `<Saved 2>` | `<saved 2>` (components/saved 2.vue)
 - `<Saved>` | `<saved>` (components/saved.vue)
 - `<Truckbody>` | `<truckbody>` (components/truckbody.vue)
