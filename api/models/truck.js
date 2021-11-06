@@ -7,142 +7,56 @@ const SavedTrucks = sequelize.define('User_Trucks', {
 		primaryKey: true,
 		autoIncrement: true,
 	},
-	parent_type: {
-		type: DataTypes.STRING,
+	index_num: {
+		type: DataTypes.INTEGER,
 		allowNull: false,
 	},
-	parent_class: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_I_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_I_class: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_I_innerHTML: {
+	yelp_name: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true,
 	},
-	child_II_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_II_class: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_II_child_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_II_child_src: {
+	image_url: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true,
 	},
-	child_II_child_alt: {
+	alias: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true,
 	},
-	child_III_type: {
+	is_closed: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
-	child_III_class: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_III_child_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_III_child_innerHTML: {
+	display_phone: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true,
 	},
-	child_IV_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_IV_class: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_IV_child_I_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_IV_child_I_innerHTML: {
+	address1: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true,
 	},
-	child_IV_child_II_type: {
+	city: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
-	child_IV_child_II_child_I_innerHTML: {
-		type: DataTypes.STRING,
-		allowNull: false,
-		unique: true,
-	},
-	child_IV_child_II_child_I_innerHTML_break: {
+	yelp_state: {
 		type: DataTypes.STRING,
 		allowNull: false,
 	},
-	child_IV_child_II_child_II_innerHTML: {
+	yelp_url: {
 		type: DataTypes.STRING,
 		allowNull: false,
 		unique: true,
 	},
-	child_IV_child_II_child_II_innerHTML_break: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_IV_child_II_child_III_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_IV_child_II_child_III_href: {
-		type: DataTypes.STRING,
-		allowNull: false,
-		unique: true,
-	},
-	child_IV_child_II_child_III_innerHTML: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_V_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_V_class: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_V_child_I_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_V_child_I_type_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_V_child_II_type: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
-	child_V_child_II_class: {
-		type: DataTypes.STRING,
-		allowNull: false,
-	},
+	checkbox: {
+		type: DataTypes.BOOLEAN,
+		allowNull: true,
+	}
 })
 
 module.exports = SavedTrucks

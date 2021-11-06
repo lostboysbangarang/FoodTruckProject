@@ -34,9 +34,13 @@
                     <div>{{trucks.location.address1}}<br/>{{trucks.location.city}} {{trucks.location.state}}<br/><a :href="trucks.url">Check out their site!</a></div>
                 </div>
                 <label class="like">
-                    <input @click="saved(index)" type="checkbox"/>
+                    <input :id="index+'like'" :ref="index+'like'" @change="saved(index)" type="checkbox" />
                     <div class="hearth"/>
                 </label>
+                <!-- <label v-else-if="!checks.index" class="like">
+                    <input :id="index+'like'" :ref="index+'like'" @change="saved(index)" type="checkbox" checked/>
+                    <div class="hearth"/>
+                </label> -->
             </div>
         </div>
         <!-- <TruckList /> -->
@@ -85,6 +89,45 @@ export default {
                 state: null,
                 zip: null,
             },
+            checks: {
+                0: false,
+                1: false,
+                2: false,
+                3: false,
+                4: false,
+                5: false,
+                6: false,
+                7: false,
+                8: false,
+                9: false,
+                10: false,
+                11: false,
+                12: false,
+                13: false,
+                14: false,
+                15: false,
+                16: false,
+                17: false,
+                18: false,
+                19: false,
+                20: false,
+                21: false,
+                22: false,
+                23: false,
+                24: false,
+                25: false,
+                26: false,
+                27: false,
+                28: false,
+                29: false,
+                30: false,
+                31: false,
+                32: false,
+                33: false,
+                34: false,
+                35: false,
+
+            },
             // yelp: {
             //     term: 'foodtruck',
             //     lat: null,
@@ -99,8 +142,25 @@ export default {
 
             },
             yelpResults: [],
+            yelpSave: {
+                name: '',
+                index_num: '',
+                image_url: '',
+                alias: '',
+                is_closed: '',
+                display_phone: '',
+                address1: '',
+                city: '',
+                state: '',
+                url: '',
+                checkbox: '',
+            },
             mobile: false,
+            whyMe: this.why,
         }
+    },
+    props: {
+        why: String
     },
     // computed: {
     //     backgroundImage() {
@@ -110,6 +170,7 @@ export default {
     //     }
     // },
     async mounted() {
+        
         try {
             const location = await axios.get('http://ip-api.com/json/')
             // console.log(location);
@@ -173,7 +234,45 @@ export default {
             console.log(e)
         }
         try {
-            document.body.className = "localTrucks";
+            // this.checkMeOut();
+            // console.log(crying);
+            // crying.forEach(element => {
+            //     console.log("YOOOOOOOOOOOOOOO", element)
+            // })
+            // , res => {
+            //     res.forEach(element => {
+            //         console.log("YOOOOOOOOOOO", element)
+            //     })
+            // })
+            axios.get('/api/checkHeart').then((response) => {
+                console.log(response);
+                response.data.forEach(element => {
+                    console.log(element.index_num);
+                    const indexPos=element.index_num;
+                    this.checks[indexPos]=true;
+                    // const stringy = `${element.index_num}like`
+                    // console.log(Array.prototype.slice.call(document.querySelectorAll('trucks')));
+                    // const divs = document.getElementsByClassName('trucks')
+                    // const arr = Array.prototype.slice.call(divs)
+                    // console.log(arr[11])
+                    // document.getElementById(stringy).disabled=true;
+                    // this.$nextTick(function () {
+                    //     console.log(stringy);
+                    //     console.log("YYYYYYYOOOOOOOOOOO",this.$refs)
+                    //     const whyyyy = this;
+                    //     console.log(whyyyy);
+                    //     // console.log(this.vModel)
+                    //     // this.$refs.forEach(element => {
+                    //     //     console.log(element)
+                    //     // })
+
+                    // })
+                    // if(client.browser) {
+                    // }
+                })
+            })
+            this.$forceUpdate();
+            console.log(this.checks)
         }
         catch (e) {
             console.log(e)
@@ -191,10 +290,80 @@ export default {
             }
         },
         yelp() {
-            console.log(this.yelpResults);
+            console.log(this.yelpSave);
         },
-        saved(mealsOnWheels) {
-            console.log(this.$refs[mealsOnWheels][0]);
+        // checkMeOut() {
+        //     axios.get('/api/checkHeart').then((response) => {
+        //         console.log(response);
+        //         response.data.forEach(element => {
+        //             console.log(element.index_num);
+        //             const stringy = `${element.index_num}like`
+        //             console.log(stringy);
+        //             console.log(Array.prototype.slice.call(document.querySelectorAll('trucks')));
+        //             const divs = document.getElementsByClassName('trucks')
+        //             const arr = Array.prototype.slice.call(divs)
+        //             console.log(arr[11])
+        //             document.getElementById(stringy).disabled=true;
+        //             console.log(this.$refs[`${element.index_num}like`])
+        //             // if(client.browser) {
+        //             // }
+        //         })
+        //     })
+        // },
+        async saved(mealsOnWheels, reffie) {
+            console.log("SHIT", reffie);
+            console.log(mealsOnWheels);
+            await axios({
+                method: 'get',
+                url: '/api/yelpID',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                params: {
+                    'term': this.search.term,
+                    'latitude': this.info.lat,
+                    'longitude': this.info.lon,
+                    'radius': this.search.radius,
+                    'limit': this.search.limit,
+                    // 'id': mealsOnWheels
+                }
+            }).then(response => {
+                console.log(response.data[mealsOnWheels]);
+                // console.log(yelpSave);
+                this.yelpSave.index_num = mealsOnWheels;
+                this.yelpSave.checkbox = true;
+                this.yelpSave.name = response.data[mealsOnWheels].name;
+                this.yelpSave.image_url = response.data[mealsOnWheels].image_url;
+                this.yelpSave.alias = response.data[mealsOnWheels].alias;
+                this.yelpSave.is_closed = response.data[mealsOnWheels].is_closed;
+                this.yelpSave.display_phone = response.data[mealsOnWheels].display_phone;
+                this.yelpSave.address1 = response.data[mealsOnWheels].location.address1;
+                this.yelpSave.city = response.data[mealsOnWheels].location.city;
+                this.yelpSave.state = response.data[mealsOnWheels].location.state;
+                this.yelpSave.url = response.data[mealsOnWheels].url;
+                axios.post('/api/saveYelp', this.yelpSave).then(response => {
+                    console.log(response);
+                })
+                // const outline = {
+
+                // }
+                //   this.yelpResults = response.data;
+                //  //  console.log(this.yelpResults.alias);
+                // response.data.forEach(element => {
+                //     // console.log(element.alias);
+                //     element.alias = element.alias.split('-').join(' ');
+                //     element.image_url = element.image_url.split(`"`).join('');
+                //     element.url = element.url.split(`"`).join('');
+                //     // console.log(element.image_url)
+                //     this.yelpResults.push(element);
+                //     // const outline = {
+                //     //     name = '',
+
+                //     // }
+                //     // console.log(element);
+                // })
+                // console.log(this.yelpResults);
+            })
         }
 
     },
@@ -203,7 +372,8 @@ export default {
 </script>
 
 <style lang="scss" scopped>
-    .localTrucks {
+    @import '~assets/css/truckCards.scss';
+    body {
         background: url(~assets/location.jpg);
         background-repeat: no-repeat;
         background-size: cover;
@@ -211,5 +381,4 @@ export default {
         background-attachment: fixed;
         height: 100vh;
     }
-    @import '~assets/css/truckCards.scss';
 </style>
