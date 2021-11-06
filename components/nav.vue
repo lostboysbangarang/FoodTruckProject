@@ -16,7 +16,7 @@ Bailing hydration and performing full client-side render.
 					<li v-if="!$auth.$state.loggedIn"><nuxt-link to="/login">Login</nuxt-link></li>
 					<li v-if="$auth.$state.loggedIn" @click="logout">Logout</li>
 					<li v-if="$auth.$state.loggedIn">
-						<div>{{ $auth.user.username }}</div>
+						<div>{{ $auth.$state.user }}</div>
 					</li>
 				</ClientOnly>
 			</ul>
