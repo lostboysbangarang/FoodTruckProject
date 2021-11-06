@@ -64,9 +64,9 @@ export default {
         }
     },
     async mounted() {
-        document.body.id = "savedTrucks";
-        const crying = document.getElementById('savedTrucks');
-        crying.style.backgroundImage = "url(/_nuxt/assets/saved.jpg)";
+        // document.body.id = "savedTrucks";
+        // const crying = document.getElementById('savedTrucks');
+        // crying.style.backgroundImage = "url(/_nuxt/assets/saved.jpg)";
         // crying.style.backgroundRepeat = "no-repeat";
         // crying.style.backgroundSize = "cover";
         // crying.style.backgroundPosition = "center";
@@ -150,13 +150,13 @@ export default {
 <style lang="scss" scoped>
     @import '~assets/css/truckCards.scss';
     // @import '~assets/saved.jpg';
-    body#savedTrucks {
-        // background: url(_nuxt/assets/saved.jpg);
-        background-repeat: no-repeat;
-        background-size: cover;
-        background-position: center;
-        background-attachment: fixed;
-        height: 100vh;
-    }
+    // body#savedTrucks {
+    //     // background: url(_nuxt/assets/saved.jpg);
+    //     background-repeat: no-repeat;
+    //     background-size: cover;
+    //     background-position: center;
+    //     background-attachment: fixed;
+    //     height: 100vh;
+    // }
 
 </style>

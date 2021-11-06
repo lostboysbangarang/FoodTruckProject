@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<!-- <button @click="successi">clickme</button> -->
+		<button @click="successi">clickme</button>
 		<Nav />
 		<Body />
 	</div>

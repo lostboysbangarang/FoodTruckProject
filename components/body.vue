@@ -1,5 +1,6 @@
 <template>
 	<ClientOnly>
+		<!-- <button :click="autho()">click me</button> -->
 		<div class="main">
 			<div class="container"></div>
 			<div v-if="!mobile" class="welcome">
@@ -8,7 +9,7 @@
 						<img src="~/assets/food-truck.svg" alt="" />
 					</div>
 					<div v-if="isAuthenticated" class="userIntro">
-						<h1>Welcome {{ loggedInUser.username }}! So glad you're hungry!</h1>
+						<h1>Welcome {{ $auth.$state.user }}! So glad you're hungry!</h1>
 					</div>
 					<div v-else id="after" class="userIntro">
 						<h1>
@@ -52,6 +53,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+// import authjs from 'auth-next';
 
 export default {
 	name: 'MainBody',
@@ -77,6 +79,10 @@ export default {
 				}
 			}
 		},
+		autho() {
+			// console.log(this.authjs);
+			console.log(this.$auth);
+		}
 	},
 	// beforeCreate: {
     //     function() {
