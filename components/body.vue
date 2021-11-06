@@ -78,6 +78,12 @@ export default {
 			}
 		},
 	},
+	// beforeCreate: {
+    //     function() {
+    //         document.body.className = "home";
+    //     }
+    // }
+	
 }
 </script>
 

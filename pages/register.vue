@@ -6,7 +6,14 @@
 </template>
 
 <script>
-export default {}
+export default {
+	name: 'RegisterPage',
+	// beforeCreate: {
+    //     function() {
+    //         document.body.className = "registerPage";
+    //     }
+    // }
+}
 </script>
 
 <style lang="scss" scoped></style>

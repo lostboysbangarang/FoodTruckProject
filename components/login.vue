@@ -67,6 +67,9 @@ export default {
 	computed: {
 		...mapGetters(['isAuthenticated', 'loggedInUser']),
 	},
+	mounted() {
+		document.body.className = "loginBody";
+	},
 	methods: {
 		async submissive(event) {
 			/*
@@ -150,7 +153,7 @@ export default {
 </script>
 
 <style lang="scss">
-body {
+.loginBody {
 	background-color: whitesmoke;
 }
 .form-wrap {
