@@ -6,3 +6,24 @@ body {
     overflow-x: hidden;
     font-family: 'Roboto', sans-serif;
 }
+
+.page-enter-active,
+.page-leave-active {
+    transition: opacity 0.5s ease;
+}
+
+.page-leave-active,
+.page-leave-to {
+    transition: opacity 0;
+}
+
+img {
+    animation: left-to-right 2s cubic-bezier(0.42, 0, 0.51, 0.9);
+}
+
+@keyframes left-to-right {
+    0% {transform: translateX(-500%);}
+    100% {
+        transform: translateX(0);
+    }
+}
