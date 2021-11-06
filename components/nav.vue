@@ -1,7 +1,11 @@
 <template>
 	<div class="container">
 		<header>
-			<nuxt-link id="logo" to="/">FoodTrucks</nuxt-link>
+			<h1 class="title">
+      <span class="text-wrapper">
+        <span class="letters">Food Truck</span>
+      </span>
+    </h1>
 			<ul v-if="$auth.$state.loggedIn && !mobile">
 				<li><nuxt-link to="/">Home</nuxt-link></li>
 				<li><div @click="logout">Logout</div></li>
@@ -31,7 +35,7 @@ import { mapState } from 'vuex'
 export default {
 	name: 'NavCard',
 	mounted() {
-		this.screenSize();    
+		this.screenSize(); 
     },
 	data() {
 		return { 
@@ -59,16 +63,44 @@ export default {
 			}
 
 		},
-	},
+	}
 }
 </script>
-
+<script>
+export default {
+  mounted() {
+    const textWrapper = document.querySelector('.title .letters')
+    textWrapper.innerHTML = textWrapper.textContent.replace(
+      /\S/g,
+      "<span class='letter'>$&</span>"
+    )
+	this.$anime
+      .timeline({ loop: true })
+  	
+	.add({
+    targets: '.title .letter',
+    opacity: [0,1],
+    easing: "easeInOutQuad",
+    duration: 2250,
+    delay: (el, i) => 150 * (i+1)
+  }).add({
+    targets: 'title',
+    opacity: 0,
+    duration: 1000,
+    easing: "easeOutExpo",
+    delay: 1000
+  })
+  }
+}
+</script>
 <style lang="scss" scoped>
 	@import url('https://fonts.googleapis.com/css2?family=Shrikhand&display=swap');
-	#logo {
-		font-family: 'Shrikhand', cursive;
-		font-size: 32px;
-		color: whitesmoke;
+	@import url('https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@200&family=Oswald:wght@300&display=swap');
+	.title {
+		font-family: Josefin;
+  		font-size: 3.5em;
+		color:#d6d99e;
+		position: relative;
 	}
 	.container {
 		display: flex;
