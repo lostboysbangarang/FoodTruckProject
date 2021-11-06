@@ -1,7 +1,7 @@
 const express = require('express')
-const config = require('./config')
-const mysql = require('mysql2')
 const cookieSession = require('cookie-session')
+
+
 
 const app = express()
 app.use(express.json())
@@ -23,14 +23,17 @@ app.use(
 //include routes
 const auth = require('./routes/auth')
 const yelpTrucks = require('./routes/yelpTrucks')
+const savedTrucks = require('./routes/savedTrucks')
 
 app.use(yelpTrucks)
 app.use(auth)
-app.listen(config.port)
+app.use(savedTrucks)
+// app.listen(config.port)
 
 module.exports = app
 
 //uncomment this to create/update all database tables. recomment it afterwards to avoid console spam
 //const { Sequelize } = require('sequelize')
 //const UserModel = require('../models/user')
+//const UserTruckModel = require('../models/truck')
 //sequelize.sync({ alter: true });

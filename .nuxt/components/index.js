@@ -3,7 +3,8 @@ export { default as Explore } from '../../components/explore.vue'
 export { default as Login } from '../../components/login.vue'
 export { default as Nav } from '../../components/nav.vue'
 export { default as Register } from '../../components/register.vue'
-export { default as Saved } from '../../components/saved.vue'
+export { default as SavedTrucks } from '../../components/savedTrucks.vue'
+export { default as TruckList } from '../../components/truckList.vue'
 export { default as Truckbody } from '../../components/truckbody.vue'
 
 // nuxt/nuxt.js#8607
