@@ -15,7 +15,7 @@
 							Please <nuxt-link class="links" to="/login">Login</nuxt-link> or
 							<nuxt-link class="links" to="/register">Register</nuxt-link> to use this site!
 						</h1>
-						<h3>Don't forget to turn off AdBlock!</h3>
+						<h3 class="animate__animated animate__flash">Don't forget to turn off AdBlock!</h3>
 					</div>
 					<ul v-if="isAuthenticated" class="buttons">
 						<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>

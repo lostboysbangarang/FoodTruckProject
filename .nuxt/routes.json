@@ -2,25 +2,29 @@
   {
     "name": "login",
     "path": "/login",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\login.vue",
-    "chunkName": "pages/login"
+    "component": "C:\\\\Users\\\\Gus1919\\\\Desktop\\\\Repositories\\\\FoodTruckProject\\\\pages\\\\login.vue",
+    "chunkName": "pages/login",
+    "_name": "_76d0137f"
   },
   {
     "name": "register",
     "path": "/register",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\register.vue",
-    "chunkName": "pages/register"
+    "component": "C:\\\\Users\\\\Gus1919\\\\Desktop\\\\Repositories\\\\FoodTruckProject\\\\pages\\\\register.vue",
+    "chunkName": "pages/register",
+    "_name": "_1e5de0fd"
   },
   {
     "name": "trucks",
     "path": "/trucks",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\trucks.vue",
-    "chunkName": "pages/trucks"
+    "component": "C:\\\\Users\\\\Gus1919\\\\Desktop\\\\Repositories\\\\FoodTruckProject\\\\pages\\\\trucks.vue",
+    "chunkName": "pages/trucks",
+    "_name": "_31c35a4e"
   },
   {
     "name": "index",
     "path": "/",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\index.vue",
-    "chunkName": "pages/index"
+    "component": "C:\\\\Users\\\\Gus1919\\\\Desktop\\\\Repositories\\\\FoodTruckProject\\\\pages\\\\index.vue",
+    "chunkName": "pages/index",
+    "_name": "_a5af1f30"
   }
 ]

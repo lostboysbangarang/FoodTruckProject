@@ -4,10 +4,10 @@ import { normalizeURL, decode } from 'ufo'
 import { interopDefault } from './utils'
 import scrollBehavior from './router.scrollBehavior.js'
 
-const _e1a5581e = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages/login" */))
-const _6a2c734b = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages/register" */))
-const _250e281c = () => interopDefault(import('..\\pages\\trucks.vue' /* webpackChunkName: "pages/trucks" */))
-const _74f49e4c = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
+const _76d0137f = () => interopDefault(import('..\\pages\\login.vue' /* webpackChunkName: "pages/login" */))
+const _1e5de0fd = () => interopDefault(import('..\\pages\\register.vue' /* webpackChunkName: "pages/register" */))
+const _31c35a4e = () => interopDefault(import('..\\pages\\trucks.vue' /* webpackChunkName: "pages/trucks" */))
+const _a5af1f30 = () => interopDefault(import('..\\pages\\index.vue' /* webpackChunkName: "pages/index" */))
 
 const emptyFn = () => {}
 
@@ -22,19 +22,19 @@ export const routerOptions = {
 
   routes: [{
     path: "/login",
-    component: _e1a5581e,
+    component: _76d0137f,
     name: "login"
   }, {
     path: "/register",
-    component: _6a2c734b,
+    component: _1e5de0fd,
     name: "register"
   }, {
     path: "/trucks",
-    component: _250e281c,
+    component: _31c35a4e,
     name: "trucks"
   }, {
     path: "/",
-    component: _74f49e4c,
+    component: _a5af1f30,
     name: "index"
   }],
 
