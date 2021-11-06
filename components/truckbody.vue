@@ -203,7 +203,6 @@ export default {
 </script>
 
 <style lang="scss" scopped>
-    @import '~assets/css/truckCards.scss';
     .localTrucks {
         background: url(~assets/location.jpg);
         background-repeat: no-repeat;
@@ -212,4 +211,5 @@ export default {
         background-attachment: fixed;
         height: 100vh;
     }
+    @import '~assets/css/truckCards.scss';
 </style>

@@ -21,6 +21,7 @@
 
 <script>
 import axios from 'axios';
+// import savedJPG from '~/assets/saved.jpg';
 export default {
     name: 'SavedTrucksCard',
     data() {
@@ -63,7 +64,14 @@ export default {
         }
     },
     async mounted() {
-        document.body.idName = "savedTrucks";
+        document.body.id = "savedTrucks";
+        const crying = document.getElementById('savedTrucks');
+        crying.style.backgroundImage = "url(/_nuxt/assets/saved.jpg)";
+        // crying.style.backgroundRepeat = "no-repeat";
+        // crying.style.backgroundSize = "cover";
+        // crying.style.backgroundPosition = "center";
+        // crying.style.backgroundAttachment = "fixed";
+        // crying.style.height = "100vh";
         const tryThis = await axios.get('/api/trucks');
         // console.log(tryThis.data[0]);
         this.cardTemplate.child_I_innerHTML = tryThis.data[0].child_I_innerHTML;
@@ -79,6 +87,13 @@ export default {
         this.cards.push(this.cardTemplate);
         console.log(this.cards);
     },
+    // computed: {
+    //     function() {
+    //         if(process.browser) {
+    //             return document.body.style.backgroundImage = "url(~assets/saved.jpg)";
+    //         }
+    //     }
+    // },
     methods: {
         async test() {
             const tryThis = await axios.get('/api/trucks');
@@ -134,8 +149,9 @@ export default {
 
 <style lang="scss" scoped>
     @import '~assets/css/truckCards.scss';
+    // @import '~assets/saved.jpg';
     body#savedTrucks {
-        background: url(~assets/saved.jpg);
+        // background: url(_nuxt/assets/saved.jpg);
         background-repeat: no-repeat;
         background-size: cover;
         background-position: center;
