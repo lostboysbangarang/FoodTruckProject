@@ -22,7 +22,9 @@ app.use(
 
 //include routes
 const auth = require('./routes/auth')
+const yelpTrucks = require('./routes/yelpTrucks')
 
+app.use(yelpTrucks)
 app.use(auth)
 app.listen(config.port)
 

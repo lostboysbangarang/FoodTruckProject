@@ -1,10 +1,10 @@
-export { default as Body } from '../..\\components\\body.vue'
-export { default as Explore } from '../..\\components\\explore.vue'
-export { default as Login } from '../..\\components\\login.vue'
-export { default as Nav } from '../..\\components\\nav.vue'
-export { default as Register } from '../..\\components\\register.vue'
-export { default as Saved } from '../..\\components\\saved.vue'
-export { default as Truckbody } from '../..\\components\\truckbody.vue'
+export { default as Body } from '../../components/body.vue'
+export { default as Explore } from '../../components/explore.vue'
+export { default as Login } from '../../components/login.vue'
+export { default as Nav } from '../../components/nav.vue'
+export { default as Register } from '../../components/register.vue'
+export { default as Saved } from '../../components/saved.vue'
+export { default as Truckbody } from '../../components/truckbody.vue'
 
 // nuxt/nuxt.js#8607
 function wrapFunctional(options) {
