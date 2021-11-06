@@ -2,9 +2,11 @@ const express = require('express')
 // const config = require('./config')
 // const mysql = require('mysql2')
 // const db = mysql.createConnection(config.db)
+const bodyParser = require('body-parser')
 
 const app = express()
 app.use(express.json())
+app.use(bodyParser.json())
 app.use(express.urlencoded({ extended: true }))
 app.use((req, res, next) => {
 	console.log(`API REQUEST @ ${req.url}\n\tRequest:\n`, req.body)
@@ -17,8 +19,9 @@ app.use((req, res, next) => {
 // 	})
 // })
 const auth = require('./routes/auth')
-
+const yelpTrucks = require('./routes/yelpTrucks')
 app.use(auth)
+app.use(yelpTrucks)
 
 module.exports = app
 
