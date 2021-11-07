@@ -80,7 +80,7 @@ export default {
 	// Axios module configuration: https://go.nuxtjs.dev/config-axios
 	axios: {
 		baseURL: '/',
-		credentials: true,
+		credentials: false,
 	},
 
 	// PWA module configuration: https://go.nuxtjs.dev/pwa
