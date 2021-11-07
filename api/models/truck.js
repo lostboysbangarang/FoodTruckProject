@@ -56,7 +56,9 @@ const SavedTrucks = sequelize.define('User_Trucks', {
 	checkbox: {
 		type: DataTypes.BOOLEAN,
 		allowNull: true,
-	}
+	},
 })
+
+SavedTrucks.sync({ alter: true })
 
 module.exports = SavedTrucks

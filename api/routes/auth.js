@@ -8,8 +8,6 @@ const userArray = []
 /* POST users listing. */
 
 router.post('/register', async (req, res) => {
-	const user = UserModel.build()
-	console.log(req.body)
 	try {
 		if (req.body.userName.length < 3 || req.body.userName > 35) {
 			res.status(400)
@@ -26,10 +24,7 @@ router.post('/register', async (req, res) => {
 		) {
 			res.status(400)
 			res.json({ error: 'Email must be valid.' })
-		} else if (
-			req.body.password1.length < 3 ||
-			req.body.password1 > 35
-		) {
+		} else if (req.body.password1.length < 3 || req.body.password1 > 35) {
 			res.status(400)
 			res.json({
 				error: 'Password must be between 3 and 35 characters long.',
@@ -38,16 +33,14 @@ router.post('/register', async (req, res) => {
 			res.status(400)
 			res.json({ error: 'Password must be the same' })
 		} else {
+			const user = UserModel.build()
+
 			user.username = req.body.userName
 			user.email = req.body.email
 			const salt = await bcrypt.genSalt()
-			const hashBrowns = await bcrypt.hash(
-				req.body.password1,
-				salt
-			)
+			const hashBrowns = await bcrypt.hash(req.body.password1, salt)
 			user.password = hashBrowns
-			console.log(hashBrowns)
-			console.log(user)
+
 			const userProfile = {
 				username: req.body.username,
 				email: req.body.email,
@@ -61,22 +54,19 @@ router.post('/register', async (req, res) => {
 				})
 				.catch((error) => {
 					res.status(400)
-					if (
-						error instanceof
-						Sequelize.UniqueConstraintError
-						) {
-							res.json({
-								error: 'Duplicate username or email.',
-							})
-						} else {
-							res.json({
-								error: 'Unknown error. Fail.',
-								data: error,
-							})
-							console.log(user + ': ' + error)
-						}
-					})
-			res.send({username: userProfile.username})
+					if (error instanceof Sequelize.UniqueConstraintError) {
+						res.json({
+							error: 'Duplicate username or email.',
+						})
+					} else {
+						res.json({
+							error: 'Unknown error. Fail.',
+							data: error,
+						})
+						console.log(user + ': ' + error)
+					}
+				})
+			res.send({ username: userProfile.username })
 		}
 	} catch (err) {
 		res.status(500).send()
@@ -114,28 +104,10 @@ router.post('/login', async (req, res) => {
 })
 
 router.get('/me', async (req, res) => {
-	// console.log(req.body.email);
-	return UserModel.findOne({ email: req.body.email})
-		.then((user) => {
-			res.send(user.username);
-		})
-	// return userName;
-})
-
-const users = [{ name: 'Alexandre' }, { name: 'Pooya' }, { name: 'Sébastien' }]
-
-/* GET users listing. */
-router.get('/users', function (req, res, next) {
-	res.json(users)
-})
-
-/* GET user by ID. */
-router.get('/users/:id', function (req, res, next) {
-	const id = parseInt(req.params.id)
-	if (id >= 0 && id < users.length) {
-		res.json(users[id])
+	if (req.session || req.session.user) {
+		res.send(200)
 	} else {
-		res.sendStatus(404)
+		res.send(403)
 	}
 })
 
