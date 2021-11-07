@@ -17,10 +17,10 @@
   "SavedTrucks": {
     "description": "Auto imported from components/savedTrucks.vue"
   },
-  "TruckList": {
-    "description": "Auto imported from components/truckList.vue"
-  },
   "Truckbody": {
     "description": "Auto imported from components/truckbody.vue"
+  },
+  "TruckList": {
+    "description": "Auto imported from components/truckList.vue"
   }
 }

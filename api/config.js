@@ -1,6 +1,6 @@
 module.exports = {
 	db: {
-		host: '0',
+		host: 'localhost',
 		user: 'foodmaker',
 		password: '1234abcd',
 		database: 'foodtruck',

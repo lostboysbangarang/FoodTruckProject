@@ -1,6 +1,5 @@
 <template>
 	<ClientOnly>
-		<!-- <button :click="autho()">click me</button> -->
 		<div class="main">
 			<div class="container"></div>
 			<div v-if="!mobile" class="welcome">
@@ -18,11 +17,11 @@
 						</h1>
 						<h3>Don't forget to turn off AdBlock!</h3>
 					</div>
-					<ul v-if="isAuthenticated" class="buttons">
-						<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-						<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
-						<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
-					</ul>
+					<center>
+						<ul v-if="isAuthenticated" class="buttons">
+							<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
+						</ul>
+					</center>
 				</div>
 			</div>
 			<div v-else id="mobile" class="welcome">
@@ -40,11 +39,11 @@
 						</h1>
 						<h3>Don't forget to turn off AdBlock!</h3>
 					</div>
-					<ul v-if="isAuthenticated" class="buttons">
-						<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-						<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
-						<li><nuxt-link class="button" to="/explore">Traveling?</nuxt-link></li>
-					</ul>
+					<center>
+						<ul v-if="isAuthenticated" class="buttons">
+							<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
+						</ul>
+					</center>
 				</div>
 			</div>
 		</div>
@@ -81,15 +80,14 @@ export default {
 		},
 		autho() {
 			// console.log(this.authjs);
-			console.log(this.$auth);
-		}
+			console.log(this.$auth)
+		},
 	},
 	// beforeCreate: {
-    //     function() {
-    //         document.body.className = "home";
-    //     }
-    // }
-	
+	//     function() {
+	//         document.body.className = "home";
+	//     }
+	// }
 }
 </script>
 
