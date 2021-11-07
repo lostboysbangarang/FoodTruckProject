@@ -77,9 +77,10 @@ export default {
 	async mounted() {
 		// get users location using their ip
 		try {
-			try {
-				let location = await axios.get('http://ip-api.com/json/')
-			} catch {
+			let location = false
+			if (process.env.NODE_ENV === 'development') {
+				location = await axios.get('http://ip-api.com/json/')
+			} else {
 				location = await axios.get('/api/ip')
 				console.log('proxied ip', location)
 			}
