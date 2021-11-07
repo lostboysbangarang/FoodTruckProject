@@ -1,6 +1,5 @@
 <template>
 	<div>
-		<button @click="successi">clickme</button>
 		<Nav />
 		<Body />
 	</div>
@@ -14,7 +13,6 @@ export default {
 			console.log(this.$auth)
 		},
 	},
-	
 }
 </script>
 
