@@ -105,9 +105,9 @@ router.post('/login', async (req, res) => {
 
 router.get('/me', async (req, res) => {
 	if (req.session || req.session.user) {
-		res.send(200)
+		res.sendStatus(200)
 	} else {
-		res.send(403)
+		res.sendStatus(403)
 	}
 })
 
