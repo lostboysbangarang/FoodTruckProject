@@ -87,7 +87,9 @@ export default {
 	data() {
 		return {
 			yelpResults: [],
-			favs: [],
+			favs: {},
+			getTrucks: {},
+			getIpInfo: {}
 		}
 	},
 	fetch() {
@@ -95,19 +97,30 @@ export default {
 	},
 	computed: {
 		...mapGetters('yelp',[
-            'getIpInfo',
-            'getTrucks'
+            // 'getIpInfo',
+            // 'getTrucks'
 		]),
         ...mapState(['yelp']),
+		// getIpInfo: {}
+		
 	},
 	async beforeCreate() {
 		if(process.server) return;
 		console.log(`\n\n\tbeforeCreate()\n\t\t\tgetJSON`);
-		await this.$store.dispatch('yelp/getJSON', localStorage.getItem('yelpArry'))
-			.then(() =>{
-				this.$store.dispatch('yelp/getIPInfo', localStorage.getItem('ipConfig'))
-			})
-		console.log(`\n\tFetched in beforeCreate():\t`, this.getIpInfo.location && this.getIpInfo.location.city)
+		if (this.getIpInfo === undefined) {
+			this.getIpInfo = await JSON.parse(localStorage.getItem('ipConfig'))
+
+		}
+		// console.log(this.getIpInfo)
+		// this.$store.dispatch('yelp/getJSON', JSON.parse(localStorage.getItem('yelpArry')))
+		// 	.then(() =>{
+		// 		this.$store.dispatch('yelp/getIPInfo', localStorage.getItem('ipConfig'))
+		// 	})
+		// console.log(`\n\tFetched in beforeCreate():\t`, this.getIpInfo.location && this.getIpInfo.location.city)
+		if(Object.keys(this.getTrucks).length < 30) {
+			this.getTrucks = await JSON.parse(localStorage.getItem('yelpArry'))
+		} 
+		// console.log(this.getTrucks)
 
 	},
 	created() {
@@ -117,7 +130,7 @@ export default {
 
 	},
 	mounted() {
-		console.log(this.getIpInfo)
+		// console.log(this.getIpInfo)
 	},
 	beforeUpdate () {
 
@@ -133,10 +146,44 @@ export default {
 	},
 	methods: {
 		saved(index) {
-            this.$store.commit('yelp/addBooleen', {index})
-            console.log("querySelector:\t", document.getElementById(`${index}checkbox`));
-            document.getElementById(`${index}checkbox`).disabled = true;
+            // this.$store.commit('yelp/addBooleen', {index})
+            // console.log("querySelector:\t", document.getElementById(`${index}checkbox`));
+            // document.getElementById(`${index}checkbox`).disabled = true;
             this.$store.dispatch('yelp/updateJSON', {objI: 'yelpArry', objII: this.getTrucks})
+			// const object = JSON.parse(localStorage.getItem('yelpArry'))
+			this.getTrucks[index].booleen = true;
+			localStorage.removeItem('yelpArry')
+			localStorage.setItem('yelpArry', JSON.stringify(this.getTrucks))
+			// console.log(JSON.parse(localStorage.getItem('savedTrucks')))
+			// const objectII = JSON.parse(localStorage.getItem('savedTrucks'))
+			// const objectIII = JSON.parse(localStorage.getItem('savedTrucks'))
+			const size = Object.keys(this.favs).length
+			
+			console.log(Object.keys(this.favs))
+			if(size === 0) {
+				this.favs[0] = this.getTrucks[index]
+			} else if (size === 1) {
+				this.favs[1] = this.getTrucks[index]
+				console.log(Object.keys(this.favs))
+				
+			} else {
+				const size = Object.keys(this.favs).length
+				const keys = Object.keys(this.favs)
+				for(let i=0; i <= size; i++) {
+					console.log(keys[i])
+					if(keys[i] === undefined) {
+						this.favs[i] = this.getTrucks[index]
+						// if(i === (size-1))
+					}
+						// }
+					// else {
+					    
+					// }
+				}
+
+			}
+			localStorage.removeItem('savedTrucks')
+			localStorage.setItem('savedTrucks', JSON.stringify(this.favs))
         },
 	},
 }

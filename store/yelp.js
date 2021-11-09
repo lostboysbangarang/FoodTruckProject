@@ -12,7 +12,7 @@ export const actions = {
 	getJSON({ state, dispatch, commit }, local) {
 		console.log(`\t\t\t\t\tInitiating JSON pull\n\n`)
 		if (state.yelpTrucks) {
-			const rollOut = JSON.parse(local)
+			const rollOut = local
 			const autoBots = Object.keys(rollOut).length
 			for (let i = 0; i < autoBots; i++) {
 				state.yelpTrucks[i] = rollOut[i]
@@ -105,23 +105,23 @@ export const mutations = {
 		}
 	},
 
-	async addBooleen(state, { index }) {
-		state.yelpTrucks[index].booleen = true
-		const size = Object.keys(state.savedTrucks).length
-		if (size === 0) {
-			state.savedTrucks[size] = state.yelpTrucks[index]
-		} else {
-            for(let i=0; i < size; i++) {
-                if(state.savedTrucks.hasOwnProperty(i.toString())) {}
-                else{
-                    state.tempTrucks[i]=state.yelpTrucks[index]
-                }
-            }
-			state.savedTrucks[size] = state.yelpTrucks[index]
-		}
-		// localStorage.removeItem('savedTrucks')
-		await localStorage.setItem('savedTrucks', JSON.stringify(state.savedTrucks))
-	},
+	// async addBooleen(state, { index }) {
+	// 	state.yelpTrucks[index].booleen = true
+	// 	const size = Object.keys(state.savedTrucks).length
+	// 	if (size === 0) {
+	// 		state.savedTrucks[size] = state.yelpTrucks[index]
+	// 	} else {
+    //         // for(let i=0; i < size; i++) {
+    //         //     if(state.savedTrucks.hasOwnProperty(i.toString())) {}
+    //         //     else{
+    //         //         state.tempTrucks[i]=state.yelpTrucks[index]
+    //         //     }
+    //         // }
+	// 		state.savedTrucks[size] = state.yelpTrucks[index]
+	// 	}
+	// 	// localStorage.removeItem('savedTrucks')
+	// 	await localStorage.setItem('savedTrucks', JSON.stringify(state.savedTrucks))
+	// },
 
 	removeBooleen(state, { index }) {
         console.log(this.yelpArry)
