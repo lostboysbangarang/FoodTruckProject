@@ -1,20 +1,23 @@
 <template>
 <!-- <div></div> -->
-    <div    
-        v-if="check"
-        class="truck">
-        <div     
-                v-for="(trucks, index) in cards"
-                :ref="index"
-                :key="trucks.alias"
+    <div class="truck">
+    <!-- <button @click="test">Click</button> -->
+        <div 
+                v-for="(trucks, index) in list"
                 :id="index"
+                :ref="index"
+                :key="trucks && trucks.alias"
                 class="trucks">
-            <div :ref="index + ' name'" class="name">{{trucks.name}}</div>
-            <div :ref="index + ' image'" class="image">
-                <img :src="trucks.image_url" :alt="trucks.alias">
+            <div    
+                    :ref="index + ' name'"
+                    class="name">{{trucks && trucks.name}}</div>
+            <div 
+                    :ref="index + ' image'" 
+                    class="image">
+                <img :src="trucks && trucks.image_url" :alt="trucks && trucks.alias">
             </div>
             <div :ref="index + ' open'" class="open">
-                <div v-if="!trucks.is_closed">
+                <div v-if="trucks && !trucks.is_closed">
                     Open Now!
                 </div>
                 <div v-else>
@@ -22,11 +25,27 @@
                 </div>
             </div>
             <div :ref="index + ' contact'" class="contact">
-                <div>{{trucks.display_phone}}</div>
-                <div>{{trucks.address1}}<br/>{{trucks.city}} {{trucks.state}}<br/><a :href="trucks.url">Check out their site!</a></div>
+                <div>{{trucks && trucks.display_phone}}</div>
+                <div>{{trucks && trucks.location && trucks.location.display_address[0]}}<br/>{{trucks && trucks.location && trucks.location.display_address[1]}}<span v-if="trucks && trucks.location && trucks.location.display_address[2]"> {{trucks && trucks.location && trucks.location.display_address[2]}}</span> <br/><a :href="trucks && trucks.url">Check out their site!</a></div>
             </div>
-            <label class="like">
-                <input @click="saved(index)" type="checkbox"/>
+            <label v-if="trucks && trucks.booleen" id="left" class="like">
+                <input 
+                        :id="index+'checkbox'"
+                        type="checkbox" 
+                        :checked="trucks && trucks.booleen"
+                        :disabled="trucks && !trucks.booleen"
+                        @change="saved(index)"/>
+                <div class="hearth"/>
+            </label>
+            <label 
+                    v-else-if="trucks && !trucks.booleen" 
+                    id="right" 
+                    class="like">
+                <input 
+                        :id="index+'checkbox'"
+                        type="checkbox"
+                        :checked="trucks && trucks.booleen"
+                        :disabled="trucks && !trucks.booleen"/>
                 <div class="hearth"/>
             </label>
         </div>
@@ -34,119 +53,77 @@
 </template>
 
 <script>
-import axios from 'axios';
+// import axios from 'axios';
 // import savedJPG from '~/assets/saved.jpg';
+import { mapGetters} from 'vuex'
 export default {
     name: 'SavedTrucksCard',
-    data() {
-        return {
-            cards: [],
-            cardTemplate: {
-                alias: '',
-                name: '',
-                image_url: '',
-                is_closed: '',
-                display_phone: '',
-                address1: '',
-                city: '',
-                state: '',
-                url: '',
-            },
-            check: false,
+    asyncData() {
+
+	},
+	data() {
+		return {
+			// list: this.getSaved
+		}
+	},
+	fetch() {
+		
+	},
+	computed: {
+		...mapGetters('yelp',[
+			'getIpInfo',
+            'getTrucks',
+            'getSaved',
+            'getLocal'
+		]),
+        list(){
+            return this.getSaved
         }
-    },
-    async mounted() {
-        // document.body.id = "savedTrucks";
-        // const crying = document.getElementById('savedTrucks');
-        // crying.style.backgroundImage = "url(/_nuxt/assets/saved.jpg)";
-        // crying.style.backgroundRepeat = "no-repeat";
-        // crying.style.backgroundSize = "cover";
-        // crying.style.backgroundPosition = "center";
-        // crying.style.backgroundAttachment = "fixed";
-        // crying.style.height = "100vh";
-        const tryThis = await axios.get('/api/trucks');
-        console.log("YOOOOO",tryThis.data);
-        if (tryThis.data.length === 0) {
-            this.check = false;
-        } else {
-            this.check = true;
-        }
-        
-        tryThis.data.forEach(element =>{
-            this.cardTemplate.name = element.yelp_name;
-            this.cardTemplate.image_url = element.image_url;
-            this.cardTemplate.alias = element.alias;
-            this.cardTemplate.is_closed = element.is_closed;
-            this.cardTemplate.display_phone = element.display_phone;
-            this.cardTemplate.address1 = element.address1;
-            this.cardTemplate.city = element.city;
-            this.cardTemplate.state = element.yelp_state;
-            this.cardTemplate.url = element.yelp_url;
-            this.cards.push(this.cardTemplate);
-        })
+	},
+	async beforeCreate () {
+		if(process.server) return;
+        console.log(`\n\n\n\t\t\tbeforeCreate()\n\n`, this.getSaved)
+		await this.$store.dispatch('yelp/getJSONTrucks', localStorage.getItem('savedTrucks'))
+        console.log(`\n\n\n\t\t\tAfter beforeCreate()\n\n`, this.getSaved)
+	},
+	created() {
 
+	},
+	beforeMount() {
 
-        console.log("HOOOOO", this.cards);
-        // this.cards.push(this.cardTemplate);
-        // console.log(this.cards);
-    },
-    // computed: {
-    //     function() {
-    //         if(process.browser) {
-    //             return document.body.style.backgroundImage = "url(~assets/saved.jpg)";
-    //         }
-    //     }
-    // },
-    methods: {
-        async test() {
-            const tryThis = await axios.get('/api/trucks');
-            // console.log(tryThis.data[0]);
-            this.cardTemplate.child_I_innerHTML = tryThis.data[0].child_I_innerHTML;
-            this.cardTemplate.child_II_child_src = tryThis.data[0].child_II_child_src;
-            this.cardTemplate.child_II_child_alt = tryThis.data[0].child_II_child_alt;
-            this.cardTemplate.child_III_child_innerHTML = tryThis.data[0].child_III_child_innerHTML;
-            this.cardTemplate.child_IV_child_I_innerHTML = tryThis.data[0].child_IV_child_I_innerHTML;
-            this.cardTemplate.child_IV_child_II_child_I_innerHTML = tryThis.data[0].child_IV_child_II_child_I_innerHTML;
-            this.cardTemplate.child_IV_child_II_child_II_innerHTML = tryThis.data[0].child_IV_child_II_child_II_innerHTML;
-            this.cardTemplate.child_IV_child_II_child_III_href = tryThis.data[0].child_IV_child_II_child_III_href;
+	},
+	mounted() {
+		console.log(`HELP`, this.list)
+	},
+	beforeUpdate () {
 
-            console.log(this.cardTemplate);
-            this.cards.push(this.cardTemplate);
-            console.log(this.cards);
-            // const element_string =
-            //     `   < 
-            //         v-for="(trucks, index) in yelpResults"
-            //         :ref="index"
-            //         :key="trucks.alias"
-            //         :id="index"
-            //         class="trucks">
-            //     <div :ref="index + ' name'" class="name">{{trucks.name}}</div>
-            //     <div :ref="index + ' image'" class="image">
-            //         <img :src="trucks.image_url" :alt="trucks.alias">
-            //     </div>
-            //     <div :ref="index + ' open'" class="open">
-            //         <div v-if="!trucks.is_closed">
-            //             Open Now!
-            //         </div>
-            //         <div v-else>
-            //             Closed Unfortunately!
-            //         </div>
-            //     </div>
-            //     <div :ref="index + ' contact'" class="contact">
-            //         <div>{{trucks.display_phone}}</div>
-            //         <div>{{trucks.location.address1}}<br/>{{trucks.location.city}} {{trucks.location.state}}<br/><a :href="trucks.url">Check out their site!</a></div>
-            //     </div>
-            //     <label class="like">
-            //         <input @click="saved(index)" type="checkbox"/>
-            //         <div class="hearth"/>
-            //     </label>
-            // </div>
-            
-            
-            // `
+	},
+	updated() {
+
+	},
+	beforeDestroy () {
+
+	},
+	destroyed() {
+        // forEach()
+	},
+	methods: {
+		saved(index) {
+            console.log("Remove")
+            this.$store.commit('yelp/removeBooleen', {index})
+            document.getElementById(`${index}checkbox`).disabled = true;
+            delete this.list[index]
+            this.$store.dispatch('yelp/updateJSON', {objI: 'savedTrucks', objII: this.getSaved})
+            console.log(this.getLocal)
+            localStorage.removeItem('savedTrucks')
+            const setSaved = JSON.parse(JSON.stringify(this.getLocal))
+            localStorage.setItem('savedTrucks', JSON.stringify(setSaved))
+            console.log(JSON.parse(localStorage.getItem('savedTrucks')))
+            this.$store.dispatch('yelp/maybeThis')
 
         }
-    },
+
+	},
 }
 </script>
 
