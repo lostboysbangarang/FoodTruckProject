@@ -1,142 +1,143 @@
 <template>
-	<div>
-		<div class="locationbar">
-			<div class="locationbar_wrapper">
-				<div class="locationbar_wrapper_icon">
-					<Location />
-				</div>
-				<div class="locationbar_wrapper_location">
-					{{ info.city }}
-				</div>
-			</div>
-		</div>
-		<div class="truck">
-			<div v-for="(trucks, index) in yelpResults" :ref="index" :key="trucks.alias" :id="index" class="trucks">
-				<div :ref="index + ' name'" class="name">{{ trucks.name }}</div>
-				<div :ref="index + ' image'" class="image">
-					<img :src="trucks.image_url" :alt="trucks.alias" />
-				</div>
-				<div :ref="index + ' open'" class="open">
-					<div v-if="!trucks.is_closed">Open Now!</div>
-					<div v-else>Closed Unfortunately!</div>
-				</div>
-				<div :ref="index + ' contact'" class="contact">
-					<div>{{ trucks.display_phone }}</div>
-					<div>
-						{{ trucks.location.address1 }}<br />{{ trucks.location.city }} {{ trucks.location.state
-						}}<br /><a :href="trucks.url">Check out their site!</a>
-					</div>
-				</div>
-				<label class="like">
-					<input
-						:id="index + 'like'"
-						:ref="index + 'like'"
-						@change="saved($event, trucks)"
-						type="checkbox"
-						:checked="favs.includes(trucks.id)"
-					/>
-					<div class="hearth" />
-				</label>
-			</div>
-		</div>
-	</div>
+    <div>
+        <div class="locationbar">
+            <div class="locationbar_wrapper">
+                <div class="locationbar_wrapper_icon">
+                    <Location/>
+                </div>
+                <div class="locationbar_wrapper_location">
+                    {{getIpInfo.location && getIpInfo.location.city}}
+                    <!-- {{getIpInfo.location.city}} -->
+                </div>
+                <!-- <button @click="yelp">Click me</button> -->
+            </div>
+        </div>
+        <div class="truck">
+            <div 
+                    v-for="(trucks, index) in getTrucks"
+                    :id="index"
+                    :ref="index"
+                    :key="trucks && trucks.name"
+                    class="trucks">
+                <div	
+						:ref="index + ' name'" 
+						class="name">{{trucks && trucks.name}}</div>
+                <div	
+						:ref="index + ' image'"
+						class="image">
+                    <img :src="trucks && trucks.image_url" :alt="trucks && trucks.alias">
+                </div>
+                <div :ref="index + ' open'" class="open">
+                    <div v-if="trucks && !trucks.is_closed">
+                        Open Now!
+                    </div>
+                    <div v-else>
+                        Closed Unfortunately!
+                    </div>
+                </div>
+                <div :ref="index + ' contact'" class="contact">
+                    <div>{{trucks && trucks.display_phone}}</div>
+                    <div>{{trucks && trucks.location && trucks.location.display_address[0]}}<br/>{{trucks && trucks.location && trucks.location.display_address[1]}}<span v-if="trucks && trucks.location && trucks.location.display_address[2]"> {{trucks && trucks.location && trucks.location.display_address[2]}}</span>
+                    
+                    <br/><a :href="trucks && trucks.url">Check out their site!</a></div>
+                </div>
+                <label v-if="trucks && trucks.booleen" id="left" class="like">
+                    <input	
+							:id="index+'checkbox'"
+							type="checkbox"
+							:checked="trucks && trucks.booleen" :disabled="trucks && trucks.booleen"/>
+                    <div class="hearth"/>
+                </label>
+                <label 	
+						v-else-if="trucks && !trucks.booleen"
+						id="right"
+						class="like">
+                    <input 	
+							:id="index+'checkbox'"
+							type="checkbox"
+							:checked="trucks && trucks.booleen"
+							:disabled="trucks && trucks.booleen"
+							@change="saved(index)"/>
+                    <div class="hearth"/>
+                </label>
+            </div>
+        </div>
+        <!-- <TruckList /> -->
+        <div class="background">
+            <div class="background_left">
+                <div class="background_left_angle"></div>
+            </div>
+            <div class="background_right"></div>\
+        </div>
+    </div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters, mapState } from 'vuex'
 import Location from '~/assets/svgs/locationIII.svg?inline'
 
 export default {
 	name: 'TruckCard',
-
 	components: {
 		Location,
 	},
+	asyncData() {
+
+	},
 	data() {
 		return {
-			info: {
-				city: null,
-				ip: null,
-				lat: null,
-				lon: null,
-				state: null,
-				zip: null,
-			},
-			search: {
-				term: 'foodtruck',
-				latitude: '',
-				longitude: '',
-				limit: '36',
-				radius: '40000',
-			},
 			yelpResults: [],
 			favs: [],
 		}
 	},
-
-	async mounted() {
-		// get users location using their ip
-		try {
-			const location = await axios.get('http://ip-api.com/json/')
-
-			this.info.city = location.data.city
-			this.info.ip = location.data.query
-			this.info.lat = location.data.lat
-			this.info.lon = location.data.lon
-			this.info.state = location.data.regionName
-			this.info.zip = location.data.zip
-		} catch (e) {
-			console.log(e)
-		}
-
-		// search yelp for food trucks
-		try {
-			axios({
-				method: 'get',
-				url: '/api/yelpTrucks',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				params: {
-					term: this.search.term,
-					latitude: this.info.lat,
-					longitude: this.info.lon,
-					radius: this.search.radius,
-					limit: this.search.limit,
-				},
-			}).then((response) => {
-				this.favs = response.data.favs
-
-				response.data.trucks.forEach((element) => {
-					element.alias = element.alias.split('-').join(' ')
-					element.image_url = element.image_url.split(`"`).join('')
-					element.url = element.url.split(`"`).join('')
-
-					this.yelpResults.push(element)
-				})
-			})
-		} catch (e) {
-			console.log(e)
-		}
+	fetch() {
+		
 	},
-
-	methods: {
-		yelp() {
-			console.log(this.yelpSave)
-		},
-
-		saved(event, truck) {
-			axios({
-				method: 'post',
-				url: event.target.checked ? '/api/favoriteTruck' : '/api/unfavoriteTruck',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				data: {
-					truckId: truck.id,
-				},
+	computed: {
+		...mapGetters('yelp',[
+            'getIpInfo',
+            'getTrucks'
+		]),
+        ...mapState(['yelp']),
+	},
+	async beforeCreate() {
+		if(process.server) return;
+		console.log(`\n\n\tbeforeCreate()\n\t\t\tgetJSON`);
+		await this.$store.dispatch('yelp/getJSON', localStorage.getItem('yelpArry'))
+			.then(() =>{
+				this.$store.dispatch('yelp/getIPInfo', localStorage.getItem('ipConfig'))
 			})
-		},
+		console.log(`\n\tFetched in beforeCreate():\t`, this.getIpInfo.location && this.getIpInfo.location.city)
+
+	},
+	created() {
+
+	},
+	beforeMount() {
+
+	},
+	mounted() {
+		console.log(this.getIpInfo)
+	},
+	beforeUpdate () {
+
+	},
+	updated() {
+
+	},
+	beforeDestroy () {
+
+	},
+	destroyed() {
+
+	},
+	methods: {
+		saved(index) {
+            this.$store.commit('yelp/addBooleen', {index})
+            console.log("querySelector:\t", document.getElementById(`${index}checkbox`));
+            document.getElementById(`${index}checkbox`).disabled = true;
+            this.$store.dispatch('yelp/updateJSON', {objI: 'yelpArry', objII: this.getTrucks})
+        },
 	},
 }
 </script>
