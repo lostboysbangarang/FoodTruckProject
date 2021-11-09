@@ -1,37 +1,37 @@
 [
-  {
-    "name": "login",
-    "path": "/login",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\login.vue",
-    "chunkName": "pages/login",
-    "_name": "_e1a5581e"
-  },
-  {
-    "name": "register",
-    "path": "/register",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\register.vue",
-    "chunkName": "pages/register",
-    "_name": "_6a2c734b"
-  },
-  {
-    "name": "saved",
-    "path": "/saved",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\saved.vue",
-    "chunkName": "pages/saved",
-    "_name": "_00d9140f"
-  },
-  {
-    "name": "trucks",
-    "path": "/trucks",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\trucks.vue",
-    "chunkName": "pages/trucks",
-    "_name": "_250e281c"
-  },
-  {
-    "name": "index",
-    "path": "/",
-    "component": "C:\\\\Users\\\\phill\\\\developement\\\\FoodTruckProject\\\\pages\\\\index.vue",
-    "chunkName": "pages/index",
-    "_name": "_74f49e4c"
-  }
+	{
+		"name": "login",
+		"path": "/login",
+		"component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/login.vue",
+		"chunkName": "pages/login",
+		"_name": "_6569f6e5"
+	},
+	{
+		"name": "register",
+		"path": "/register",
+		"component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/register.vue",
+		"chunkName": "pages/register",
+		"_name": "_64837bd7"
+	},
+	{
+		"name": "saved",
+		"path": "/saved",
+		"component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/saved.vue",
+		"chunkName": "pages/saved",
+		"_name": "_51d491fa"
+	},
+	{
+		"name": "trucks",
+		"path": "/trucks",
+		"component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/trucks.vue",
+		"chunkName": "pages/trucks",
+		"_name": "_1665e3a8"
+	},
+	{
+		"name": "index",
+		"path": "/",
+		"component": "/home/bjorn/repos/OSU/projects/FoodTruckProject/pages/index.vue",
+		"chunkName": "pages/index",
+		"_name": "_c87b5864"
+	}
 ]

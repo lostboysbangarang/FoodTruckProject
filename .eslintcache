@@ -1,1 +1,95 @@
-[{"C:\\Users\\phill\\developement\\FoodTruckProject\\components\\truckbody.vue":"1","C:\\Users\\phill\\developement\\FoodTruckProject\\components\\body.vue":"2","C:\\Users\\phill\\developement\\FoodTruckProject\\pages\\index.vue":"3"},{"size":3707,"mtime":1636272798557,"results":"4","hashOfConfig":"5"},{"size":5085,"mtime":1636265562349,"results":"6","hashOfConfig":"5"},{"size":351,"mtime":1636260975971,"results":"7","hashOfConfig":"5"},{"filePath":"8","messages":"9","errorCount":0,"fatalErrorCount":0,"warningCount":3,"fixableErrorCount":0,"fixableWarningCount":3,"source":null},"gcox0i",{"filePath":"10","messages":"11","errorCount":0,"fatalErrorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},{"filePath":"12","messages":"13","errorCount":0,"fatalErrorCount":0,"warningCount":0,"fixableErrorCount":0,"fixableWarningCount":0},"C:\\Users\\phill\\developement\\FoodTruckProject\\components\\truckbody.vue",["14","15","16"],"C:\\Users\\phill\\developement\\FoodTruckProject\\components\\body.vue",[],"C:\\Users\\phill\\developement\\FoodTruckProject\\pages\\index.vue",[],{"ruleId":"17","severity":1,"message":"18","line":14,"column":81,"nodeType":"19","endLine":14,"endColumn":92,"fix":"20"},{"ruleId":"17","severity":1,"message":"21","line":35,"column":7,"nodeType":"19","endLine":35,"endColumn":22,"fix":"22"},{"ruleId":"17","severity":1,"message":"23","line":36,"column":7,"nodeType":"19","endLine":36,"endColumn":42,"fix":"24"},"vue/attributes-order","Attribute \":id\" should go before \":key\".","VAttribute",{"range":"25","text":"26"},"Attribute \"type\" should go before \"@change\".",{"range":"27","text":"28"},"Attribute \":checked\" should go before \"@change\".",{"range":"29","text":"30"},[348,379],":id=\"index\" :key=\"trucks.alias\"",[1137,1191],"type=\"checkbox\"\r\n\t\t\t\t\t\t@change=\"saved($event, trucks)\"",[1137,1234],":checked=\"favs.includes(trucks.id)\"\r\n\t\t\t\t\t\t@change=\"saved($event, trucks)\"\r\n\t\t\t\t\t\ttype=\"checkbox\""]
+[
+	{
+		"/home/bjorn/repos/OSU/projects/FoodTruckProject/components/body.vue": "1",
+		"/home/bjorn/repos/OSU/projects/FoodTruckProject/store/index.js": "2",
+		"/home/bjorn/repos/OSU/projects/FoodTruckProject/store/yelp.js": "3",
+		"/home/bjorn/repos/OSU/projects/FoodTruckProject/components/truckbody.vue": "4",
+		"/home/bjorn/repos/OSU/projects/FoodTruckProject/components/savedTrucks.vue": "5"
+	},
+	{
+		"size": 5464,
+		"mtime": 1636465411617,
+		"results": "6",
+		"hashOfConfig": "7"
+	},
+	{
+		"size": 924,
+		"mtime": 1636439315087,
+		"results": "8",
+		"hashOfConfig": "7"
+	},
+	{
+		"size": 6382,
+		"mtime": 1636465413065,
+		"results": "9",
+		"hashOfConfig": "7"
+	},
+	{
+		"size": 6077,
+		"mtime": 1636466607971,
+		"results": "10",
+		"hashOfConfig": "7"
+	},
+	{
+		"size": 4379,
+		"mtime": 1636459396735,
+		"results": "11",
+		"hashOfConfig": "7"
+	},
+	{
+		"filePath": "12",
+		"messages": "13",
+		"errorCount": 0,
+		"fatalErrorCount": 0,
+		"warningCount": 0,
+		"fixableErrorCount": 0,
+		"fixableWarningCount": 0
+	},
+	"w5lvgu",
+	{
+		"filePath": "14",
+		"messages": "15",
+		"errorCount": 0,
+		"fatalErrorCount": 0,
+		"warningCount": 0,
+		"fixableErrorCount": 0,
+		"fixableWarningCount": 0
+	},
+	{
+		"filePath": "16",
+		"messages": "17",
+		"errorCount": 0,
+		"fatalErrorCount": 0,
+		"warningCount": 0,
+		"fixableErrorCount": 0,
+		"fixableWarningCount": 0
+	},
+	{
+		"filePath": "18",
+		"messages": "19",
+		"errorCount": 0,
+		"fatalErrorCount": 0,
+		"warningCount": 0,
+		"fixableErrorCount": 0,
+		"fixableWarningCount": 0
+	},
+	{
+		"filePath": "20",
+		"messages": "21",
+		"errorCount": 0,
+		"fatalErrorCount": 0,
+		"warningCount": 0,
+		"fixableErrorCount": 0,
+		"fixableWarningCount": 0
+	},
+	"/home/bjorn/repos/OSU/projects/FoodTruckProject/components/body.vue",
+	[],
+	"/home/bjorn/repos/OSU/projects/FoodTruckProject/store/index.js",
+	[],
+	"/home/bjorn/repos/OSU/projects/FoodTruckProject/store/yelp.js",
+	[],
+	"/home/bjorn/repos/OSU/projects/FoodTruckProject/components/truckbody.vue",
+	[],
+	"/home/bjorn/repos/OSU/projects/FoodTruckProject/components/savedTrucks.vue",
+	[]
+]

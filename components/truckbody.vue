@@ -6,142 +6,157 @@
 					<Location />
 				</div>
 				<div class="locationbar_wrapper_location">
-					{{ info.city }}
+					{{ getIpInfo.location && getIpInfo.location.city }}
+					<!-- {{getIpInfo.location.city}} -->
 				</div>
+				<!-- <button @click="yelp">Click me</button> -->
 			</div>
 		</div>
 		<div class="truck">
-			<div v-for="(trucks, index) in yelpResults" :ref="index" :key="trucks.alias" :id="index" class="trucks">
-				<div :ref="index + ' name'" class="name">{{ trucks.name }}</div>
+			<div v-for="(trucks, index) in getTrucks" :id="index" :ref="index" :key="trucks && trucks.name" class="trucks">
+				<div :ref="index + ' name'" class="name">{{ trucks && trucks.name }}</div>
 				<div :ref="index + ' image'" class="image">
-					<img :src="trucks.image_url" :alt="trucks.alias" />
+					<img :src="trucks && trucks.image_url" :alt="trucks && trucks.alias" />
 				</div>
 				<div :ref="index + ' open'" class="open">
-					<div v-if="!trucks.is_closed">Open Now!</div>
+					<div v-if="trucks && !trucks.is_closed">Open Now!</div>
 					<div v-else>Closed Unfortunately!</div>
 				</div>
 				<div :ref="index + ' contact'" class="contact">
-					<div>{{ trucks.display_phone }}</div>
+					<div>{{ trucks && trucks.display_phone }}</div>
 					<div>
-						{{ trucks.location.address1 }}<br />{{ trucks.location.city }} {{ trucks.location.state
-						}}<br /><a :href="trucks.url">Check out their site!</a>
+						{{ trucks && trucks.location && trucks.location.display_address[0] }}<br />{{
+							trucks && trucks.location && trucks.location.display_address[1]
+						}}<span v-if="trucks && trucks.location && trucks.location.display_address[2]">
+							{{ trucks && trucks.location && trucks.location.display_address[2] }}</span
+						>
+
+						<br /><a :href="trucks && trucks.url">Check out their site!</a>
 					</div>
 				</div>
-				<label class="like">
+				<label v-if="trucks && trucks.booleen" id="left" class="like">
 					<input
-						:id="index + 'like'"
-						:ref="index + 'like'"
-						@change="saved($event, trucks)"
+						:id="index + 'checkbox'"
 						type="checkbox"
-						:checked="favs.includes(trucks.id)"
+						:checked="trucks && trucks.booleen"
+						:disabled="trucks && trucks.booleen"
+					/>
+					<div class="hearth" />
+				</label>
+				<label v-else-if="trucks && !trucks.booleen" id="right" class="like">
+					<input
+						:id="index + 'checkbox'"
+						type="checkbox"
+						:checked="trucks && trucks.booleen"
+						:disabled="trucks && trucks.booleen"
+						@change="saved(index)"
 					/>
 					<div class="hearth" />
 				</label>
 			</div>
 		</div>
+		<!-- <TruckList /> -->
+		<div class="background">
+			<div class="background_left">
+				<div class="background_left_angle"></div>
+			</div>
+			<div class="background_right"></div>
+			\
+		</div>
 	</div>
 </template>
 
 <script>
-import axios from 'axios'
+import { mapGetters, mapState } from 'vuex'
 import Location from '~/assets/svgs/locationIII.svg?inline'
 
 export default {
 	name: 'TruckCard',
-
 	components: {
 		Location,
 	},
+	asyncData() {},
 	data() {
 		return {
-			info: {
-				city: null,
-				ip: null,
-				lat: null,
-				lon: null,
-				state: null,
-				zip: null,
-			},
-			search: {
-				term: 'foodtruck',
-				latitude: '',
-				longitude: '',
-				limit: '36',
-				radius: '40000',
-			},
 			yelpResults: [],
-			favs: [],
+			favs: {},
+			getTrucks: {},
+			getIpInfo: {},
 		}
 	},
-
-	async mounted() {
-		// get users location using their ip
-		try {
-			let location = false
-			if (process.env.NODE_ENV === 'development') {
-				location = await axios.get('http://ip-api.com/json/')
-			} else {
-				location = await axios.get('/api/ip')
-				console.log('proxied ip', location)
-			}
-
-			this.info.city = location.data.city
-			this.info.ip = location.data.query
-			this.info.lat = location.data.lat
-			this.info.lon = location.data.lon
-			this.info.state = location.data.regionName
-			this.info.zip = location.data.zip
-		} catch (e) {
-			console.log(e)
-		}
-
-		// search yelp for food trucks
-		try {
-			axios({
-				method: 'get',
-				url: '/api/yelpTrucks',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				params: {
-					term: this.search.term,
-					latitude: this.info.lat,
-					longitude: this.info.lon,
-					radius: this.search.radius,
-					limit: this.search.limit,
-				},
-			}).then((response) => {
-				this.favs = response.data.favs
-
-				response.data.trucks.forEach((element) => {
-					element.alias = element.alias.split('-').join(' ')
-					element.image_url = element.image_url.split(`"`).join('')
-					element.url = element.url.split(`"`).join('')
-
-					this.yelpResults.push(element)
-				})
-			})
-		} catch (e) {
-			console.log(e)
-		}
+	fetch() {},
+	computed: {
+		...mapGetters('yelp', [
+			// 'getIpInfo',
+			// 'getTrucks'
+		]),
+		...mapState(['yelp']),
+		// getIpInfo: {}
 	},
-
+	async beforeCreate() {
+		if (process.server) return
+		console.log(`\n\n\tbeforeCreate()\n\t\t\tgetJSON`)
+		if (this.getIpInfo === undefined) {
+			this.getIpInfo = await JSON.parse(localStorage.getItem('ipConfig'))
+		}
+		// console.log(this.getIpInfo)
+		// this.$store.dispatch('yelp/getJSON', JSON.parse(localStorage.getItem('yelpArry')))
+		// 	.then(() =>{
+		// 		this.$store.dispatch('yelp/getIPInfo', localStorage.getItem('ipConfig'))
+		// 	})
+		// console.log(`\n\tFetched in beforeCreate():\t`, this.getIpInfo.location && this.getIpInfo.location.city)
+		if (Object.keys(this.getTrucks).length < 30) {
+			this.getTrucks = await JSON.parse(localStorage.getItem('yelpArry'))
+		}
+		// console.log(this.getTrucks)
+	},
+	created() {},
+	beforeMount() {},
+	mounted() {
+		// console.log(this.getIpInfo)
+	},
+	beforeUpdate() {},
+	updated() {},
+	beforeDestroy() {},
+	destroyed() {},
 	methods: {
-		yelp() {
-			console.log(this.yelpSave)
-		},
+		saved(index) {
+			// this.$store.commit('yelp/addBooleen', {index})
+			// console.log("querySelector:\t", document.getElementById(`${index}checkbox`));
+			// document.getElementById(`${index}checkbox`).disabled = true;
+			this.$store.dispatch('yelp/updateJSON', { objI: 'yelpArry', objII: this.getTrucks })
+			// const object = JSON.parse(localStorage.getItem('yelpArry'))
+			this.getTrucks[index].booleen = true
+			localStorage.removeItem('yelpArry')
+			localStorage.setItem('yelpArry', JSON.stringify(this.getTrucks))
+			// console.log(JSON.parse(localStorage.getItem('savedTrucks')))
+			// const objectII = JSON.parse(localStorage.getItem('savedTrucks'))
+			// const objectIII = JSON.parse(localStorage.getItem('savedTrucks'))
+			const size = Object.keys(this.favs).length
 
-		saved(event, truck) {
-			axios({
-				method: 'post',
-				url: event.target.checked ? '/api/favoriteTruck' : '/api/unfavoriteTruck',
-				headers: {
-					'Content-Type': 'application/json',
-				},
-				data: {
-					truckId: truck.id,
-				},
-			})
+			console.log(Object.keys(this.favs))
+			if (size === 0) {
+				this.favs[0] = this.getTrucks[index]
+			} else if (size === 1) {
+				this.favs[1] = this.getTrucks[index]
+				console.log(Object.keys(this.favs))
+			} else {
+				const size = Object.keys(this.favs).length
+				const keys = Object.keys(this.favs)
+				for (let i = 0; i <= size; i++) {
+					console.log(keys[i])
+					if (keys[i] === undefined) {
+						this.favs[i] = this.getTrucks[index]
+						// if(i === (size-1))
+					}
+					// }
+					// else {
+
+					// }
+				}
+			}
+			localStorage.removeItem('savedTrucks')
+			localStorage.setItem('savedTrucks', JSON.stringify(this.favs))
 		},
 	},
 }

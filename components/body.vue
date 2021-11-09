@@ -1,13 +1,14 @@
 <template>
 	<ClientOnly>
 		<div class="main">
+			<!-- <button @click="autho">Click Me</button> -->
 			<div class="container"></div>
 			<div v-if="!mobile" class="welcome">
 				<div class="wrapper">
 					<div class="logo">
 						<img src="~/assets/food-truck.svg" alt="" />
 					</div>
-					<div v-if="isAuthenticated" class="userIntro">
+					<div v-if="$auth.$state.loggedIn" class="userIntro">
 						<h1>Welcome {{ $auth.$state.user }}! So glad you're hungry!</h1>
 					</div>
 					<div v-else id="after" class="userIntro">
@@ -17,11 +18,12 @@
 						</h1>
 						<h3>Don't forget to turn off AdBlock!</h3>
 					</div>
-					<center>
-						<ul v-if="isAuthenticated" class="buttons">
-							<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-						</ul>
-					</center>
+					<ul v-if="$auth.$state.loggedIn" class="buttons">
+						<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
+						<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
+					</ul>
+					<!-- <center>
+					</center> -->
 				</div>
 			</div>
 			<div v-else id="mobile" class="welcome">
@@ -29,7 +31,7 @@
 					<div class="logo">
 						<img src="~/assets/food-truck.svg" alt="" />
 					</div>
-					<div v-if="isAuthenticated" class="userIntro">
+					<div v-if="$auth.$state.loggedIn" class="userIntro">
 						<h1>Welcome {{ loggedInUser.username }}! So glad you're hungry!</h1>
 					</div>
 					<div v-else id="after" class="userIntro">
@@ -39,11 +41,10 @@
 						</h1>
 						<h3>Don't forget to turn off AdBlock!</h3>
 					</div>
-					<center>
-						<ul v-if="isAuthenticated" class="buttons">
-							<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
-						</ul>
-					</center>
+					<ul v-if="$auth.$state.loggedIn" class="buttons">
+						<li><nuxt-link class="button" to="/trucks">Trucks Near Me</nuxt-link></li>
+						<li><nuxt-link class="button" to="/saved">Saved Trucks</nuxt-link></li>
+					</ul>
 				</div>
 			</div>
 		</div>
@@ -51,43 +52,79 @@
 </template>
 
 <script>
-import { mapGetters } from 'vuex'
+import { mapGetters, mapState } from 'vuex'
 // import authjs from 'auth-next';
 
 export default {
 	name: 'MainBody',
+	asyncData() {
+
+	},
 	data() {
 		return {
 			mobile: false,
 		}
 	},
-	computed: {
-		...mapGetters(['isAuthenticated', 'loggedInUser']),
+	fetch() {
+		
 	},
+	computed: {
+		...mapState('yelp', ['ipInfo', 'yelpTrucks']),
+		...mapGetters('yelp',[
+			'getIpInfo',
+			'getTrucks',
+			'getSaved'
+		]),
+		ipInformation () {
+			return this.$store.state.yelp.ipInfo;
+		}
+	},
+	async beforeCreate () {
+		if(process.server) return;
+		console.log(`\n\n\n\t\t\tbeforeCreate()\n\n`)
+		await this.$store.commit('yelp/setIP')
+		// .then(() =>{
+		// 	this.$store.commit()
+		// })
+		console.log(`\nIP Information\n`, this.getIpInfo)
+	},
+	created() {
 
+	},
+	beforeMount() {
+
+	},
 	mounted() {
 		this.screenSize()
 	},
+	beforeUpdate () {
+
+	},
+	updated() {
+
+	},
+	beforeDestroy () {
+
+	},
+	destroyed() {
+
+	},
 	methods: {
+		setIP() {
+			this.$store.commit('yelp/setIP')
+			console.log(`\t\tstore file IP Info\n\n`, this.$store)
+		},
 		screenSize() {
 			if (process.browser) {
-				// console.log(window)
 				if (window.innerWidth < 1200) {
 					this.mobile = true
-					// console.log(this.mobile);
 				}
 			}
 		},
 		autho() {
-			// console.log(this.authjs);
-			console.log(this.$auth)
-		},
+			console.log(this.$store.state.yelp.yelpTrucks);
+		}
 	},
-	// beforeCreate: {
-	//     function() {
-	//         document.body.className = "home";
-	//     }
-	// }
 }
 </script>
 
@@ -136,9 +173,7 @@ export default {
 			align-self: center;
 			align-items: center;
 			justify-content: center;
-			// background-color: black;
 			& .logo {
-				// background-color: white;
 				width: 100%;
 				height: 80%;
 				display: flex;
@@ -218,7 +253,6 @@ export default {
 					}
 				}
 				& .buttons {
-					// justify-content: flex-start;
 					& li {
 						padding: 4px 12px 4px;
 					}
