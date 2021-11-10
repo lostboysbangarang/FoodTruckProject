@@ -2,16 +2,17 @@ const { Sequelize } = require('sequelize')
 require('dotenv')
 
 // todo: Move credentials including DB name to environment variables
+
 const sequelize = new Sequelize(
-	'foodtruck',
-	'foodmaker',
-	'1234abcd',
+	process.env.MYSQL_DB || 'foodtruck',
+	process.env.MYSQL_USER || 'foodmaker',
+	process.env.MYSQL_PASSWORD || '1234abcd',
 	{
-		host: 'localhost',
+		host: process.env.MYSQL_ADDRESS || 'localhost',
 		dialect: 'mysql',
-		port: '3306',
+		port: process.env.MYSQL_PORT || 3306,
+		reconnect: true,
 	}
-	// 'mysql://foodmaker:1234abcd@localhost/foodtruck'
 )
 
 sequelize.authenticate()

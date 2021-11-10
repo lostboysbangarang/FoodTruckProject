@@ -1,8 +1,6 @@
 const express = require('express')
 const cookieSession = require('cookie-session')
 
-
-
 const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
@@ -23,11 +21,9 @@ app.use(
 //include routes
 const auth = require('./routes/auth')
 const yelpTrucks = require('./routes/yelpTrucks')
-const savedTrucks = require('./routes/savedTrucks')
 
 app.use(yelpTrucks)
 app.use(auth)
-app.use(savedTrucks)
 // app.listen(config.port)
 
 module.exports = app

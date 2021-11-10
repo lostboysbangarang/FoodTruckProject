@@ -75,10 +75,11 @@ router.post('/register', async (req, res) => {
 })
 
 router.post('/login', async (req, res) => {
+	console.log('body', req.body)
 	UserModel.findOne({ where: { email: req.body.email } })
 		.then((user) => {
-			console.log(user)
-			console.log('compare', req.body.password, user.password)
+			console.log('user', user)
+
 			bcrypt.compare(req.body.password, user.password).then((match) => {
 				if (match) {
 					req.session.user = user

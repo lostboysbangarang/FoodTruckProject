@@ -29,6 +29,35 @@ router.get('/yelpTrucks', async (req, res) => {
 	res.send({ trucks: yelpResults.data.businesses, favs: favs })
 })
 
+// this is needed to get the clients real IP when hosted on heroku
+function getClientIp(req) {
+	var ipAddress
+	// Amazon EC2 / Heroku workaround to get real client IP
+	var forwardedIpsStr = req.header('x-forwarded-for')
+	console.log('forwardedIpsStr', forwardedIpsStr, req.connection.remoteAddress)
+	if (forwardedIpsStr) {
+		// 'x-forwarded-for' header may return multiple IP addresses in
+		// the format: "client IP, proxy 1 IP, proxy 2 IP" so take the
+		// the first one
+		var forwardedIps = forwardedIpsStr.split(',')
+		ipAddress = forwardedIps[0]
+	}
+	if (!ipAddress) {
+		// Ensure getting client IP address still works in
+		// development environment
+		ipAddress = req.connection.remoteAddress
+	}
+	return ipAddress
+}
+
+router.get('/ip', async (req, res) => {
+	const ipAddr = getClientIp(req)
+
+	const location = await axios.get('http://ip-api.com/json/' + ipAddr)
+
+	res.json(location.data)
+})
+
 router.post('/favoriteTruck', async (req, res) => {
 	let fav = FavTruck.build()
 
