@@ -3,24 +3,28 @@
     "name": "login",
     "path": "/login",
     "component": "/Users/dahirabdi/Documents/GitHub/FoodTruckProject/pages/login.vue",
-    "chunkName": "pages/login"
+    "chunkName": "pages/login",
+    "_name": "_d0976702"
   },
   {
     "name": "register",
     "path": "/register",
     "component": "/Users/dahirabdi/Documents/GitHub/FoodTruckProject/pages/register.vue",
-    "chunkName": "pages/register"
+    "chunkName": "pages/register",
+    "_name": "_8639f006"
   },
   {
     "name": "trucks",
     "path": "/trucks",
     "component": "/Users/dahirabdi/Documents/GitHub/FoodTruckProject/pages/trucks.vue",
-    "chunkName": "pages/trucks"
+    "chunkName": "pages/trucks",
+    "_name": "_2d66414e"
   },
   {
     "name": "index",
     "path": "/",
     "component": "/Users/dahirabdi/Documents/GitHub/FoodTruckProject/pages/index.vue",
-    "chunkName": "pages/index"
+    "chunkName": "pages/index",
+    "_name": "_63e6ad30"
   }
 ]
