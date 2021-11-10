@@ -1,0 +1,35 @@
+{
+  "entry": "server.js",
+  "files": {
+    "components/body.js": "components/body.js",
+    "components/explore.js": "components/explore.js",
+    "components/login.js": "components/login.js",
+    "components/nav.js": "components/nav.js",
+    "components/register.js": "components/register.js",
+    "components/saved-trucks.js": "components/saved-trucks.js",
+    "components/truck-list.js": "components/truck-list.js",
+    "components/truckbody.js": "components/truckbody.js",
+    "pages/index.js": "pages/index.js",
+    "pages/login.js": "pages/login.js",
+    "pages/register.js": "pages/register.js",
+    "pages/saved.js": "pages/saved.js",
+    "pages/trucks.js": "pages/trucks.js",
+    "server.js": "server.js"
+  },
+  "maps": {
+    "components/body.js": "components/body.js.map",
+    "components/explore.js": "components/explore.js.map",
+    "components/login.js": "components/login.js.map",
+    "components/nav.js": "components/nav.js.map",
+    "components/register.js": "components/register.js.map",
+    "components/saved-trucks.js": "components/saved-trucks.js.map",
+    "components/truck-list.js": "components/truck-list.js.map",
+    "components/truckbody.js": "components/truckbody.js.map",
+    "pages/index.js": "pages/index.js.map",
+    "pages/login.js": "pages/login.js.map",
+    "pages/register.js": "pages/register.js.map",
+    "pages/saved.js": "pages/saved.js.map",
+    "pages/trucks.js": "pages/trucks.js.map",
+    "server.js": "server.js.map"
+  }
+}
