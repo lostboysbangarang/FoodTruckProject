@@ -223,15 +223,15 @@ var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_)
       /*
       try {
       	this.loading = true
-      		await this.$axios
+      			await this.$axios
       		.post('api/login', this.form)
       		.then((response) => {
       			console.log(response.data)
-      				this.success = response.data.boo
+      					this.success = response.data.boo
       			this.username =
       				response.data.username
       			this.errored = false
-      				console.log(
+      					console.log(
       				`\nSUCCESS:\t`,
       				this.success
       			)
@@ -318,7 +318,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   false,
   injectStyles,
   null,
-  "5feb2a32"
+  "5cd126ce"
   
 )
 

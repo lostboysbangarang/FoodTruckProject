@@ -581,7 +581,7 @@ module.exports = require("vue-meta");
 /* 21 */
 /***/ (function(module) {
 
-module.exports = JSON.parse("{\"title\":\"foodtrucks\",\"meta\":[{\"hid\":\"charset\",\"charset\":\"utf-8\"},{\"hid\":\"viewport\",\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"},{\"hid\":\"mobile-web-app-capable\",\"name\":\"mobile-web-app-capable\",\"content\":\"yes\"},{\"hid\":\"apple-mobile-web-app-title\",\"name\":\"apple-mobile-web-app-title\",\"content\":\"foodtrucks\"},{\"hid\":\"og:type\",\"name\":\"og:type\",\"property\":\"og:type\",\"content\":\"website\"},{\"hid\":\"og:title\",\"name\":\"og:title\",\"property\":\"og:title\",\"content\":\"foodtrucks\"},{\"hid\":\"og:site_name\",\"name\":\"og:site_name\",\"property\":\"og:site_name\",\"content\":\"foodtrucks\"}],\"link\":[{\"hid\":\"shortcut-icon\",\"rel\":\"shortcut icon\",\"href\":\"/_nuxt/icons/icon_64x64.e3e9fb.png\"},{\"hid\":\"apple-touch-icon\",\"rel\":\"apple-touch-icon\",\"href\":\"/_nuxt/icons/icon_512x512.e3e9fb.png\",\"sizes\":\"512x512\"},{\"rel\":\"manifest\",\"href\":\"/_nuxt/manifest.49b959aa.json\",\"hid\":\"manifest\"}],\"htmlAttrs\":{\"lang\":\"en\"}}");
+module.exports = JSON.parse("{\"title\":\"foodtrucks\",\"meta\":[{\"hid\":\"charset\",\"charset\":\"utf-8\"},{\"hid\":\"viewport\",\"name\":\"viewport\",\"content\":\"width=device-width, initial-scale=1\"},{\"hid\":\"mobile-web-app-capable\",\"name\":\"mobile-web-app-capable\",\"content\":\"yes\"},{\"hid\":\"apple-mobile-web-app-title\",\"name\":\"apple-mobile-web-app-title\",\"content\":\"foodtrucks\"},{\"hid\":\"description\",\"name\":\"description\",\"content\":\"```bash\\r # install dependencies\\r $ npm install\"},{\"hid\":\"og:type\",\"name\":\"og:type\",\"property\":\"og:type\",\"content\":\"website\"},{\"hid\":\"og:title\",\"name\":\"og:title\",\"property\":\"og:title\",\"content\":\"foodtrucks\"},{\"hid\":\"og:site_name\",\"name\":\"og:site_name\",\"property\":\"og:site_name\",\"content\":\"foodtrucks\"},{\"hid\":\"og:description\",\"name\":\"og:description\",\"property\":\"og:description\",\"content\":\"```bash\\r # install dependencies\\r $ npm install\"}],\"link\":[{\"hid\":\"shortcut-icon\",\"rel\":\"shortcut icon\",\"href\":\"/_nuxt/icons/icon_64x64.e3e9fb.png\"},{\"hid\":\"apple-touch-icon\",\"rel\":\"apple-touch-icon\",\"href\":\"/_nuxt/icons/icon_512x512.e3e9fb.png\",\"sizes\":\"512x512\"},{\"rel\":\"manifest\",\"href\":\"/_nuxt/manifest.cefda950.json\",\"hid\":\"manifest\"}],\"htmlAttrs\":{\"lang\":\"en\"}}");
 
 /***/ }),
 /* 22 */
@@ -1030,8 +1030,8 @@ __webpack_require__.d(components_namespaceObject, "Login", function() { return L
 __webpack_require__.d(components_namespaceObject, "Nav", function() { return Nav; });
 __webpack_require__.d(components_namespaceObject, "Register", function() { return Register; });
 __webpack_require__.d(components_namespaceObject, "SavedTrucks", function() { return SavedTrucks; });
-__webpack_require__.d(components_namespaceObject, "TruckList", function() { return TruckList; });
 __webpack_require__.d(components_namespaceObject, "Truckbody", function() { return Truckbody; });
+__webpack_require__.d(components_namespaceObject, "TruckList", function() { return TruckList; });
 
 // EXTERNAL MODULE: external "vue"
 var external_vue_ = __webpack_require__(0);
@@ -1825,15 +1825,15 @@ function shouldScrollToTop(route) {
 
 
 
-const _6569f6e5 = () => interopDefault(__webpack_require__.e(/* import() | pages/login */ 10).then(__webpack_require__.bind(null, 74)));
+const _e1a5581e = () => interopDefault(__webpack_require__.e(/* import() | pages/login */ 10).then(__webpack_require__.bind(null, 74)));
 
-const _64837bd7 = () => interopDefault(__webpack_require__.e(/* import() | pages/register */ 11).then(__webpack_require__.bind(null, 75)));
+const _6a2c734b = () => interopDefault(__webpack_require__.e(/* import() | pages/register */ 11).then(__webpack_require__.bind(null, 75)));
 
-const _51d491fa = () => interopDefault(__webpack_require__.e(/* import() | pages/saved */ 12).then(__webpack_require__.bind(null, 76)));
+const _00d9140f = () => interopDefault(__webpack_require__.e(/* import() | pages/saved */ 12).then(__webpack_require__.bind(null, 76)));
 
-const _1665e3a8 = () => interopDefault(__webpack_require__.e(/* import() | pages/trucks */ 13).then(__webpack_require__.bind(null, 77)));
+const _250e281c = () => interopDefault(__webpack_require__.e(/* import() | pages/trucks */ 13).then(__webpack_require__.bind(null, 77)));
 
-const _c87b5864 = () => interopDefault(__webpack_require__.e(/* import() | pages/index */ 9).then(__webpack_require__.bind(null, 78)));
+const _74f49e4c = () => interopDefault(__webpack_require__.e(/* import() | pages/index */ 9).then(__webpack_require__.bind(null, 78)));
 
 const emptyFn = () => {};
 
@@ -1846,23 +1846,23 @@ const routerOptions = {
   scrollBehavior: router_scrollBehavior,
   routes: [{
     path: "/login",
-    component: _6569f6e5,
+    component: _e1a5581e,
     name: "login"
   }, {
     path: "/register",
-    component: _64837bd7,
+    component: _6a2c734b,
     name: "register"
   }, {
     path: "/saved",
-    component: _51d491fa,
+    component: _00d9140f,
     name: "saved"
   }, {
     path: "/trucks",
-    component: _1665e3a8,
+    component: _250e281c,
     name: "trucks"
   }, {
     path: "/",
-    component: _c87b5864,
+    component: _74f49e4c,
     name: "index"
   }],
   fallback: false
@@ -2060,7 +2060,7 @@ var nuxt_error_component = Object(componentNormalizer["a" /* default */])(
   false,
   injectStyles,
   null,
-  "8d933932"
+  "ddeee65a"
   
 )
 
@@ -2364,7 +2364,7 @@ var nuxt_loading_component = Object(componentNormalizer["a" /* default */])(
   false,
   nuxt_loading_injectStyles,
   null,
-  "88fbba4a"
+  "3120bd72"
   
 )
 
@@ -2396,7 +2396,7 @@ var default_component = Object(componentNormalizer["a" /* default */])(
   false,
   null,
   null,
-  "1ff94ccb"
+  "6f8485bd"
   
 )
 
@@ -2716,8 +2716,8 @@ const Login = () => __webpack_require__.e(/* import() | components/login */ 3).t
 const Nav = () => __webpack_require__.e(/* import() | components/nav */ 4).then(__webpack_require__.bind(null, 40)).then(c => wrapFunctional(c.default || c));
 const Register = () => __webpack_require__.e(/* import() | components/register */ 5).then(__webpack_require__.bind(null, 66)).then(c => wrapFunctional(c.default || c));
 const SavedTrucks = () => __webpack_require__.e(/* import() | components/saved-trucks */ 6).then(__webpack_require__.bind(null, 67)).then(c => wrapFunctional(c.default || c));
-const TruckList = () => __webpack_require__.e(/* import() | components/truck-list */ 7).then(__webpack_require__.bind(null, 80)).then(c => wrapFunctional(c.default || c));
-const Truckbody = () => __webpack_require__.e(/* import() | components/truckbody */ 8).then(__webpack_require__.bind(null, 68)).then(c => wrapFunctional(c.default || c)); // nuxt/nuxt.js#8607
+const Truckbody = () => __webpack_require__.e(/* import() | components/truckbody */ 8).then(__webpack_require__.bind(null, 68)).then(c => wrapFunctional(c.default || c));
+const TruckList = () => __webpack_require__.e(/* import() | components/truck-list */ 7).then(__webpack_require__.bind(null, 80)).then(c => wrapFunctional(c.default || c)); // nuxt/nuxt.js#8607
 
 function wrapFunctional(options) {
   if (!options || !options.functional) {
@@ -3120,20 +3120,8 @@ const createAxiosInstance = axiosOptions => {
     };
   }); // Setup interceptors
 
-  setupCredentialsInterceptor(axios);
   setupProgress(axios);
   return axios;
-};
-
-const setupCredentialsInterceptor = axios => {
-  // Send credentials only to relative and API Backend requests
-  axios.onRequest(config => {
-    if (config.withCredentials === undefined) {
-      if (!/^https?:\/\//i.test(config.url) || config.url.indexOf(config.baseURL) === 0) {
-        config.withCredentials = true;
-      }
-    }
-  });
 };
 
 const setupProgress = axios => {
@@ -5773,23 +5761,23 @@ _nuxt_middleware.auth = authMiddleware;
 
 /* Plugins */
 
- // Source: ./components/plugin.js (mode: 'all')
+ // Source: .\\components\\plugin.js (mode: 'all')
 
- // Source: ./content/plugin.client.js (mode: 'client')
+ // Source: .\\content\\plugin.client.js (mode: 'client')
 
- // Source: ./content/plugin.server.js (mode: 'server')
+ // Source: .\\content\\plugin.server.js (mode: 'server')
 
- // Source: ./workbox.js (mode: 'client')
+ // Source: .\\workbox.js (mode: 'client')
 
- // Source: ./pwa/meta.plugin.js (mode: 'all')
+ // Source: .\\pwa\\meta.plugin.js (mode: 'all')
 
- // Source: ./pwa/icon.plugin.js (mode: 'all')
+ // Source: .\\pwa\\icon.plugin.js (mode: 'all')
 
- // Source: ./axios.js (mode: 'all')
+ // Source: .\\axios.js (mode: 'all')
 
- // Source: ../plugins/vee-validate.js (mode: 'all')
+ // Source: ..\\plugins\\vee-validate.js (mode: 'all')
 
- // Source: ./auth.js (mode: 'all')
+ // Source: .\\auth.js (mode: 'all')
 // Component: <ClientOnly>
 
 external_vue_default.a.component(external_vue_client_only_default.a.name, external_vue_client_only_default.a); // TODO: Remove in Nuxt 3: <NoSsr>

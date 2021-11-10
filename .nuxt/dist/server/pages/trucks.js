@@ -187,7 +187,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   false,
   injectStyles,
   "280fb756",
-  "b6fa21a8"
+  "254ac15a"
   
 )
 
@@ -308,12 +308,12 @@ module.exports.__inject__ = function (context) {
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/truckbody.vue?vue&type=template&id=4298ca26&
-var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._ssrNode("<div class=\"locationbar\">","</div>",[_vm._ssrNode("<div class=\"locationbar_wrapper\">","</div>",[_vm._ssrNode("<div class=\"locationbar_wrapper_icon\">","</div>",[_c('Location')],1),_vm._ssrNode(" <div class=\"locationbar_wrapper_location\">"+_vm._ssrEscape("\n                    "+_vm._s(_vm.getIpInfo.location && _vm.getIpInfo.location.city)+"\n                    ")+"</div>")],2)]),_vm._ssrNode(" <div class=\"truck\">"+(_vm._ssrList((_vm.getTrucks),function(trucks,index){return ("<div"+(_vm._ssrAttr("id",index))+" class=\"trucks\"><div class=\"name\">"+_vm._ssrEscape(_vm._s(trucks && trucks.name))+"</div> <div class=\"image\"><img"+(_vm._ssrAttr("src",trucks && trucks.image_url))+(_vm._ssrAttr("alt",trucks && trucks.alias))+"></div> <div class=\"open\">"+((trucks && !trucks.is_closed)?("<div>\n                        Open Now!\n                    </div>"):("<div>\n                        Closed Unfortunately!\n                    </div>"))+"</div> <div class=\"contact\"><div>"+_vm._ssrEscape(_vm._s(trucks && trucks.display_phone))+"</div> <div>"+_vm._ssrEscape(_vm._s(trucks && trucks.location && trucks.location.display_address[0]))+"<br>"+_vm._ssrEscape(_vm._s(trucks && trucks.location && trucks.location.display_address[1]))+((trucks && trucks.location && trucks.location.display_address[2])?("<span>"+_vm._ssrEscape(" "+_vm._s(trucks && trucks.location && trucks.location.display_address[2]))+"</span>"):"<!---->")+" <br><a"+(_vm._ssrAttr("href",trucks && trucks.url))+">Check out their site!</a></div></div> "+((trucks && trucks.booleen)?("<label id=\"left\" class=\"like\"><input"+(_vm._ssrAttr("id",index+'checkbox'))+" type=\"checkbox\""+(_vm._ssrAttr("disabled",trucks && trucks.booleen))+(_vm._ssrAttr("checked",trucks && trucks.booleen))+"> <div class=\"hearth\"></div></label>"):(trucks && !trucks.booleen)?("<label id=\"right\" class=\"like\"><input"+(_vm._ssrAttr("id",index+'checkbox'))+" type=\"checkbox\""+(_vm._ssrAttr("disabled",trucks && trucks.booleen))+(_vm._ssrAttr("checked",trucks && trucks.booleen))+"> <div class=\"hearth\"></div></label>"):"<!---->")+"</div>")}))+"</div> <div class=\"background\"><div class=\"background_left\"><div class=\"background_left_angle\"></div></div> <div class=\"background_right\"></div>\\\n        </div>")],2)}
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/truckbody.vue?vue&type=template&id=40261dc0&
+var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',[_vm._ssrNode("<div class=\"locationbar\">","</div>",[_vm._ssrNode("<div class=\"locationbar_wrapper\">","</div>",[_vm._ssrNode("<div class=\"locationbar_wrapper_icon\">","</div>",[_c('Location')],1),_vm._ssrNode(" <div class=\"locationbar_wrapper_location\">"+_vm._ssrEscape("\n\t\t\t\t"+_vm._s(_vm.getIpInfo.location && _vm.getIpInfo.location.city)+"\n\t\t\t\t")+"</div>")],2)]),_vm._ssrNode(" <div class=\"truck\">"+(_vm._ssrList((_vm.getTrucks),function(trucks,index){return ("<div"+(_vm._ssrAttr("id",index))+" class=\"trucks\"><div class=\"name\">"+_vm._ssrEscape(_vm._s(trucks && trucks.name))+"</div> <div class=\"image\"><img"+(_vm._ssrAttr("src",trucks && trucks.image_url))+(_vm._ssrAttr("alt",trucks && trucks.alias))+"></div> <div class=\"open\">"+((trucks && !trucks.is_closed)?("<div>Open Now!</div>"):("<div>Closed Unfortunately!</div>"))+"</div> <div class=\"contact\"><div>"+_vm._ssrEscape(_vm._s(trucks && trucks.display_phone))+"</div> <div>"+_vm._ssrEscape("\n\t\t\t\t\t"+_vm._s(trucks && trucks.location && trucks.location.display_address[0]))+"<br>"+_vm._ssrEscape(_vm._s(trucks && trucks.location && trucks.location.display_address[1]))+((trucks && trucks.location && trucks.location.display_address[2])?("<span>"+_vm._ssrEscape("\n\t\t\t\t\t\t"+_vm._s(trucks && trucks.location && trucks.location.display_address[2]))+"</span>"):"<!---->")+" <br><a"+(_vm._ssrAttr("href",trucks && trucks.url))+">Check out their site!</a></div></div> "+((trucks && trucks.booleen)?("<label id=\"left\" class=\"like\"><input"+(_vm._ssrAttr("id",index + 'checkbox'))+" type=\"checkbox\""+(_vm._ssrAttr("disabled",trucks && trucks.booleen))+(_vm._ssrAttr("checked",trucks && trucks.booleen))+"> <div class=\"hearth\"></div></label>"):(trucks && !trucks.booleen)?("<label id=\"right\" class=\"like\"><input"+(_vm._ssrAttr("id",index + 'checkbox'))+" type=\"checkbox\""+(_vm._ssrAttr("disabled",trucks && trucks.booleen))+(_vm._ssrAttr("checked",trucks && trucks.booleen))+"> <div class=\"hearth\"></div></label>"):"<!---->")+"</div>")}))+"</div> <div class=\"background\"><div class=\"background_left\"><div class=\"background_left_angle\"></div></div> <div class=\"background_right\"></div>\n\t\t\\\n\t</div>")],2)}
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/truckbody.vue?vue&type=template&id=4298ca26&
+// CONCATENATED MODULE: ./components/truckbody.vue?vue&type=template&id=40261dc0&
 
 // EXTERNAL MODULE: external "vuex"
 var external_vuex_ = __webpack_require__(5);
@@ -323,12 +323,6 @@ var locationIIIinline = __webpack_require__(57);
 var locationIIIinline_default = /*#__PURE__*/__webpack_require__.n(locationIIIinline);
 
 // CONCATENATED MODULE: ./node_modules/babel-loader/lib??ref--2-0!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/truckbody.vue?vue&type=script&lang=js&
-//
-//
-//
-//
-//
-//
 //
 //
 //
@@ -531,7 +525,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   false,
   injectStyles,
   null,
-  "ec61466c"
+  "2593d89e"
   
 )
 
@@ -623,7 +617,7 @@ var component = Object(componentNormalizer["a" /* default */])(
   false,
   injectStyles,
   null,
-  "758765be"
+  "7fad99fc"
   
 )
 
