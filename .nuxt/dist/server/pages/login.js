@@ -274,7 +274,7 @@ module.exports = __webpack_require__.p + "img/loginRegister.9c92d37.jpg";
 // ESM COMPAT FLAG
 __webpack_require__.r(__webpack_exports__);
 
-// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/login.vue?vue&type=template&id=dac26ee4&
+// CONCATENATED MODULE: ./node_modules/vue-loader/lib/loaders/templateLoader.js??vue-loader-options!./node_modules/@nuxt/components/dist/loader.js??ref--0-0!./node_modules/vue-loader/lib??vue-loader-options!./components/login.vue?vue&type=template&id=63a924cb&
 var render = function () {var _vm=this;var _h=_vm.$createElement;var _c=_vm._self._c||_h;return _c('div',{staticClass:"form-wrap"},[_c('ValidationObserver',{scopedSlots:_vm._u([{key:"default",fn:function(ref){
 var invalid = ref.invalid;
 return [_c('form',{attrs:{"disabled":_vm.loading},on:{"submit":function($event){$event.preventDefault();return _vm.submissive.apply(null, arguments)}}},[_c('p',{staticClass:"register"},[_vm._v("\n\t\t\t\tDon't have an account? Register now:\n\t\t\t\t"),_c('nuxt-link',{attrs:{"to":"/register"}},[_vm._v("Register")])],1),_vm._v(" "),_c('h2',[_vm._v("Login to FoodTrucks")]),_vm._v(" "),_c('div',{staticClass:"inputs"},[_c('div',{staticClass:"input"},[_c('ValidationProvider',{attrs:{"name":"email","rules":"required|email"},scopedSlots:_vm._u([{key:"default",fn:function(ref){
@@ -285,7 +285,7 @@ return [_c('input',{directives:[{name:"model",rawName:"v-model",value:(_vm.form.
 var staticRenderFns = []
 
 
-// CONCATENATED MODULE: ./components/login.vue?vue&type=template&id=dac26ee4&
+// CONCATENATED MODULE: ./components/login.vue?vue&type=template&id=63a924cb&
 
 // EXTERNAL MODULE: external "vee-validate"
 var external_vee_validate_ = __webpack_require__(4);
@@ -373,51 +373,41 @@ var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_)
 
   methods: {
     async submissive(event) {
-      /*
       try {
-      	this.loading = true
-      		await this.$axios
-      		.post('api/login', this.form)
-      		.then((response) => {
-      			console.log(response.data)
-      				this.success = response.data.boo
-      			this.username =
-      				response.data.username
-      			this.errored = false
-      				console.log(
-      				`\nSUCCESS:\t`,
-      				this.success
-      			)
-      		})
-      		.catch((error) => {
-      			this.errored = true
-      			this.error_message =
-      				error.response.data
-      		})
-      		.finally(this.loading === false)
-      	console.log(
-      		`Authorized to be Seccsi\n`,
-      		this.$auth
-      	)
+        this.loading = true;
+        await this.$axios.post('api/login', this.form).then(response => {
+          console.log(response.data);
+          this.success = response.data.boo;
+          this.username = response.data.username;
+          this.errored = false;
+          console.log(`\nSUCCESS:\t`, this.success);
+        }).catch(error => {
+          this.errored = true;
+          this.error_message = error.response.data;
+        }).finally(this.loading === false);
+        console.log(`Authorized to be Seccsi\n`, this.$auth);
       } catch (e) {
-      	console.log(`\nERROR ERROR WE GON DIE\n`, e)
-      	this.error = e.response.data.message
-      }
-      */
-      // try {
-      await this.$auth.loginWith('cookie', {
-        data: {
-          email: this.form.email,
-          password: this.form.password
-        }
-      }).then(() => {
-        // todo: Send them to the logged in page
-        this.$router.push('/');
-        console.log('logged in', arguments);
-      }).catch(error => {
-        // todo: Tell the user they did bad
-        console.log('login error', error);
-      });
+        console.log(`\nERROR ERROR WE GON DIE\n`, e);
+        this.error = e.response.data.message;
+      } // try {
+      // await this.$auth
+      // 	.loginWith('cookie', {
+      // 		data: {
+      // 			email: this.form.email,
+      // 			password: this.form.password,
+      // 			user: 
+      // 		},
+      // 	})
+      // 	.then(() => {
+      // 		// todo: Send them to the logged in page
+      // 		this.$router.push('/')
+      // 		console.log('logged in', arguments)
+      // 	})
+      // 	.catch((error) => {
+      // 		// todo: Tell the user they did bad
+      // 		console.log('login error', error)
+      // 	})
+
       /*
       if (this.success && seccsi) {
       	await this.$auth.setUser(this.username)
@@ -431,6 +421,7 @@ var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_)
       	this.error = e.response.data.message
       }
       */
+
     },
 
     async seccsi() {

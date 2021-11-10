@@ -72,7 +72,7 @@ export default {
 	},
 	methods: {
 		async submissive(event) {
-			/*
+			
 			try {
 				this.loading = true
 
@@ -105,25 +105,27 @@ export default {
 				console.log(`\nERROR ERROR WE GON DIE\n`, e)
 				this.error = e.response.data.message
 			}
-			*/
+			
 			// try {
 
-			await this.$auth
-				.loginWith('cookie', {
-					data: {
-						email: this.form.email,
-						password: this.form.password,
-					},
-				})
-				.then(() => {
-					// todo: Send them to the logged in page
-					this.$router.push('/')
-					console.log('logged in', arguments)
-				})
-				.catch((error) => {
-					// todo: Tell the user they did bad
-					console.log('login error', error)
-				})
+			// await this.$auth
+			// 	.loginWith('cookie', {
+			// 		data: {
+			// 			email: this.form.email,
+			// 			password: this.form.password,
+			// 			user: 
+
+			// 		},
+			// 	})
+			// 	.then(() => {
+			// 		// todo: Send them to the logged in page
+			// 		this.$router.push('/')
+			// 		console.log('logged in', arguments)
+			// 	})
+			// 	.catch((error) => {
+			// 		// todo: Tell the user they did bad
+			// 		console.log('login error', error)
+			// 	})
 
 			/*
 			if (this.success && seccsi) {
